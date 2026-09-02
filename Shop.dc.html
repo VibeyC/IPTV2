@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="description" content="Buy your IPTV subscription — 30,000+ live channels and 120,000+ movies & series in 4K. Instant activation, free trial, 24/7 support." />
+<meta name="theme-color" content="#070707" />
+<link rel="preload" as="image" href="assets/shophero.jpg" fetchpriority="high" />
+<template id="__bundler_thumbnail" data-bg-color="#070707">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#070707"/>
+    <rect x="330" y="250" width="540" height="320" rx="26" fill="none" stroke="#10b981" stroke-width="16"/>
+    <path d="M545 350 L680 410 L545 470 Z" fill="#10b981"/>
+    <rect x="520" y="600" width="160" height="16" rx="8" fill="#10b981"/>
+  </svg>
+</template>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+<script src="./whatsapp-config.js"></script>
+<style>
+  html, body { margin:0; padding:0; background:#070707; }
+  body { font-family:'DM Sans', system-ui, sans-serif; -webkit-font-smoothing:antialiased; }
+  * { box-sizing:border-box; }
+  a { color:#34d399; text-decoration:none; }
+  a:hover { color:#6ee7b7; }
+  img { display:block; max-width:100%; }
+  [data-page-shell] { padding-left: 0; }
+  @media (max-width: 1340px) and (min-width: 761px) { [data-page-shell] { padding-left: 58px; } }
+  [data-mobilenav] { display: none; }
+  @media (max-width: 900px) { [data-sec] { padding-top: 56px !important; padding-bottom: 56px !important; } }
+  @media (max-width: 760px) {
+    [data-page-shell] { padding-left: 0; padding-bottom: 56px; }
+    [data-navlink] { display: none; }
+    [data-mobilenav] { display: flex; gap: 26px; justify-content: center; padding: 0 22px 12px; }
+    [data-mobilenav] a { font-size: 14px; font-weight: 600; }
+    [data-langrail] {
+      top: auto; bottom: 0; left: 0; right: 0; transform: none;
+      flex-direction: row; justify-content: center;
+      border-radius: 0; border-left: none; border-right: none;
+      border-bottom: none; border-top: 1px solid rgba(255,255,255,.1);
+    }
+    [data-wa] { bottom: 70px !important; width: 50px !important; height: 50px !important; }
+    [data-hero] { padding-top: 60px !important; padding-bottom: 60px !important; }
+    [data-heroveil] { background: linear-gradient(180deg, rgba(7,7,7,.84) 0%, rgba(7,7,7,.9) 55%, rgba(7,7,7,.97) 100%) !important; }
+    [data-herostrip] { grid-template-columns: repeat(2,1fr) !important; }
+    [data-herostrip] > div { border-left: none !important; }
+  }
+</style>
+</helmet>
+
+<div data-page-shell="true" style="background:#070707; color:#f2f2f2; overflow-x:hidden; min-height:100vh">
+
+  <div data-langrail="true" style="position:fixed; left:0; top:50%; transform:translateY(-50%); zIndex:80; display:flex; flexDirection:column; gap:2px; padding:6px; background:rgba(13,13,13,.94); border:1px solid rgba(255,255,255,.1); borderLeft:none; borderRadius:0 14px 14px 0; backdropFilter:blur(10px)">
+    <sc-for list="{{ langs }}" as="lg" hint-placeholder-count="5">
+      <button type="button" onClick="{{ lg.pick }}" title="{{ lg.name }}" style="{{ lg.style }}">{{ lg.code }}</button>
+    </sc-for>
+  </div>
+
+  <header style="position:sticky; top:0; zIndex:70; background:rgba(7,7,7,.9); backdropFilter:blur(14px); borderBottom:1px solid rgba(255,255,255,.08)">
+    <div style="maxWidth:1220px; margin:0 auto; padding:14px 22px; display:flex; alignItems:center; justifyContent:space-between; gap:20px">
+      <a href="Home.dc.html" style="display:flex; alignItems:center"><img src="assets/brand-logo.png" alt="IPTV Web" width="160" height="38" style="height:38px; width:auto" /></a>
+      <nav style="display:flex; alignItems:center; gap:34px">
+        <a href="Home.dc.html" data-navlink="true" style="color:#9a9a9a; fontSize:15px; fontWeight:500">{{ t.navHome }}</a>
+        <a href="Shop.dc.html" data-navlink="true" style="color:#ffffff; fontSize:15px; fontWeight:500; borderBottom:2px solid #10b981; paddingBottom:3px">{{ t.navShop }}</a>
+        <a href="SetupGuide.dc.html" data-navlink="true" style="color:#9a9a9a; fontSize:15px; fontWeight:500">{{ t.navSetup }}</a>
+        <a href="{{ waMain }}" target="_blank" rel="noopener" style="background:#10b981; color:#06120e; fontWeight:700; fontSize:14px; padding:11px 22px; borderRadius:999px; letterSpacing:.2px" style-hover="background:#34d399">{{ t.ctaStart }}</a>
+      </nav>
+    </div>
+    <div data-mobilenav="true">
+      <a href="Home.dc.html" style="color:#9a9a9a">{{ t.navHome }}</a>
+      <a href="Shop.dc.html" style="color:#ffffff">{{ t.navShop }}</a>
+      <a href="SetupGuide.dc.html" style="color:#9a9a9a">{{ t.navSetup }}</a>
+    </div>
+  </header>
+
+  <section id="top" data-hero="true" style="position:relative; padding:104px 22px 96px; overflow:hidden; background:#070707">
+    <img src="assets/shophero.jpg" alt="Living room with a smart TV streaming IPTV in 4K" width="1536" height="1024" fetchpriority="high" decoding="async" style="position:absolute; inset:0; width:100%; height:100%; objectFit:cover; objectPosition:66% center; zIndex:0" />
+    <div data-heroveil="true" style="position:absolute; inset:0; zIndex:1; background:linear-gradient(90deg, rgba(7,7,7,.96) 0%, rgba(7,7,7,.9) 36%, rgba(7,7,7,.55) 66%, rgba(7,7,7,.3) 100%)"></div>
+    <div style="position:relative; zIndex:2; maxWidth:1220px; margin:0 auto">
+      <div style="maxWidth:620px">
+        <div style="color:#34d399; fontSize:12px; fontWeight:700; letterSpacing:3px; textTransform:uppercase; marginBottom:14px">{{ t.heroEyebrow }}</div>
+        <h1 style="fontFamily:'Sora',sans-serif; fontSize:clamp(36px,5vw,58px); lineHeight:1.06; fontWeight:800; margin:0 0 16px; letterSpacing:-1.5px; color:#ffffff; textWrap:balance">{{ t.heroLine1 }}<br /><span style="color:#10b981">{{ t.heroLine2 }}</span></h1>
+        <p style="fontSize:17px; lineHeight:1.6; color:#b3b3b3; margin:0 0 34px; maxWidth:480px; textWrap:pretty">{{ t.heroSub }}</p>
+        <div data-herostrip="true" style="display:grid; gridTemplateColumns:repeat(4,1fr); gap:0; maxWidth:620px">
+          <div style="padding:0 18px; textAlign:center">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto 10px" aria-hidden="true"><path d="M13 2 3 14h8l-1 8 10-12h-8l1-8Z" /></svg>
+            <div style="fontSize:14px; fontWeight:600; color:#e6e6e6">{{ t.hs1 }}</div>
+          </div>
+          <div style="padding:0 18px; textAlign:center; borderLeft:1px solid rgba(255,255,255,.12)">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto 10px" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4" /><path d="m8 12 3 3 5-6" /></svg>
+            <div style="fontSize:14px; fontWeight:600; color:#e6e6e6">{{ t.hs2 }}</div>
+          </div>
+          <div style="padding:0 18px; textAlign:center; borderLeft:1px solid rgba(255,255,255,.12)">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto 10px" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="2" /><path d="M8 21h8" /></svg>
+            <div style="fontSize:14px; fontWeight:600; color:#e6e6e6">{{ t.hs3 }}</div>
+          </div>
+          <div style="padding:0 18px; textAlign:center; borderLeft:1px solid rgba(255,255,255,.12)">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto 10px" aria-hidden="true"><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></svg>
+            <div style="fontSize:14px; fontWeight:600; color:#e6e6e6">{{ t.hs4 }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="plans" data-sec="true" style="padding:82px 22px">
+    <div style="maxWidth:1220px; margin:0 auto">
+      <h2 style="fontFamily:'Sora',sans-serif; textAlign:center; fontSize:clamp(28px,3.8vw,42px); fontWeight:800; margin:0 0 10px; letterSpacing:-1px; color:#ffffff">{{ t.plansTitle }}</h2>
+      <p style="textAlign:center; color:#9a9a9a; fontSize:16px; margin:0 0 44px">{{ t.plansSub }}</p>
+      <div style="display:grid; gridTemplateColumns:repeat(auto-fit,minmax(210px,1fr)); gap:16px; alignItems:stretch">
+        <sc-for list="{{ plans }}" as="p" hint-placeholder-count="5">
+          <div style="{{ p.cardStyle }}">
+            <sc-if value="{{ p.popular }}" hint-placeholder-val="{{ false }}">
+              <div style="position:absolute; top:-11px; left:50%; transform:translateX(-50%); background:#10b981; color:#06120e; fontSize:11px; fontWeight:800; letterSpacing:1px; textTransform:uppercase; padding:5px 14px; borderRadius:999px; whiteSpace:nowrap">{{ t.popular }}</div>
+            </sc-if>
+            <h3 style="fontFamily:'Sora',sans-serif; fontSize:19px; fontWeight:700; margin:6px 0 12px; textAlign:center; color:#ffffff">{{ p.name }}</h3>
+            <div style="display:flex; alignItems:baseline; justifyContent:center; gap:4px">
+              <span style="fontFamily:'Sora',sans-serif; fontSize:42px; fontWeight:800; color:#10b981; letterSpacing:-1.5px">{{ p.price }}</span>
+            </div>
+            <div style="textAlign:center; fontSize:13px; color:#8a8a8a; marginBottom:22px">{{ p.period }}</div>
+            <ul style="listStyle:none; margin:0 0 24px; padding:0; display:grid; gap:10px; flexGrow:1">
+              <sc-for list="{{ p.features }}" as="f" hint-placeholder-count="5">
+                <li style="display:flex; gap:9px; alignItems:flex-start; fontSize:13.5px; color:#bfbfbf; lineHeight:1.4">
+                  <span style="color:#10b981; fontWeight:700">&#10003;</span>{{ f.text }}
+                </li>
+              </sc-for>
+            </ul>
+            <a href="{{ p.href }}" target="_blank" rel="noopener" style="{{ p.btnStyle }}">{{ t.ctaBuy }}</a>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section data-sec="true" style="padding:0 22px 60px">
+    <div style="maxWidth:1220px; margin:0 auto; padding:34px 30px; borderRadius:20px; background:#0d0d0d; border:1px solid rgba(255,255,255,.08)">
+      <div style="display:grid; gridTemplateColumns:repeat(auto-fit,minmax(230px,1fr)); gap:26px">
+        <div style="display:flex; gap:16px; alignItems:flex-start">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="flexShrink:0" aria-hidden="true"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09Z" /><path d="M12 15 9 12a15.5 15.5 0 0 1 3.5-6.5C15.5 2.5 19 2 21.5 2.5 22 5 21.5 8.5 18.5 11.5A15.5 15.5 0 0 1 12 15Z" /><circle cx="16" cy="8" r="1.6" /></svg>
+          <div>
+            <div style="fontFamily:'Sora',sans-serif; fontSize:16px; fontWeight:700; color:#ffffff; marginBottom:5px">{{ t.b1t }}</div>
+            <div style="fontSize:13.5px; color:#9a9a9a; lineHeight:1.5">{{ t.b1d }}</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:16px; alignItems:flex-start">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="flexShrink:0" aria-hidden="true"><path d="M12 2.5 4 5.8v5.4c0 4.6 3.2 8.7 8 10.3 4.8-1.6 8-5.7 8-10.3V5.8l-8-3.3Z" /><path d="m8.6 12 2.4 2.4 4.4-4.8" /></svg>
+          <div>
+            <div style="fontFamily:'Sora',sans-serif; fontSize:16px; fontWeight:700; color:#ffffff; marginBottom:5px">{{ t.b2t }}</div>
+            <div style="fontSize:13.5px; color:#9a9a9a; lineHeight:1.5">{{ t.b2d }}</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:16px; alignItems:flex-start">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="flexShrink:0" aria-hidden="true"><circle cx="12" cy="12" r="9.5" /><path d="M2.5 12h19" /><path d="M12 2.5c2.5 2.6 3.8 5.9 3.8 9.5s-1.3 6.9-3.8 9.5c-2.5-2.6-3.8-5.9-3.8-9.5S9.5 5.1 12 2.5Z" /></svg>
+          <div>
+            <div style="fontFamily:'Sora',sans-serif; fontSize:16px; fontWeight:700; color:#ffffff; marginBottom:5px">{{ t.b3t }}</div>
+            <div style="fontSize:13.5px; color:#9a9a9a; lineHeight:1.5">{{ t.b3d }}</div>
+          </div>
+        </div>
+        <div style="display:flex; gap:16px; alignItems:flex-start">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="flexShrink:0" aria-hidden="true"><circle cx="12" cy="9" r="4.5" /><path d="M6 13.5C4.3 15 3.5 17.3 4 20" /><path d="M18 13.5c1.7 1.5 2.5 3.8 2 6.5" /><path d="m12 6.8.9 1.9 2 .3-1.5 1.4.4 2-1.8-1-1.8 1 .4-2L9.1 9l2-.3.9-1.9Z" /></svg>
+          <div>
+            <div style="fontFamily:'Sora',sans-serif; fontSize:16px; fontWeight:700; color:#ffffff; marginBottom:5px">{{ t.b4t }}</div>
+            <div style="fontSize:13.5px; color:#9a9a9a; lineHeight:1.5">{{ t.b4d }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-sec="true" style="padding:0 22px 60px">
+    <div style="maxWidth:1220px; margin:0 auto; padding:40px 30px; borderRadius:20px; background:#0d0d0d; border:1px solid rgba(255,255,255,.08)">
+      <h2 style="fontFamily:'Sora',sans-serif; textAlign:center; fontSize:clamp(26px,3.2vw,36px); fontWeight:800; margin:0 0 30px; letterSpacing:-.8px; color:#ffffff">{{ t.payTitle }}</h2>
+      <div style="display:grid; gridTemplateColumns:repeat(auto-fit,minmax(130px,1fr)); gap:12px">
+        <sc-for list="{{ payments }}" as="pm" hint-placeholder-count="8">
+          <div style="height:88px; borderRadius:14px; background:#101010; border:1px solid rgba(255,255,255,.08); display:flex; flexDirection:column; alignItems:center; justifyContent:center; gap:8px" style-hover="borderColor:rgba(16,185,129,.5)">
+            {{ pm.icon }}
+            <div style="fontSize:12px; fontWeight:600; color:#c4c4c4; letterSpacing:.3px">{{ pm.label }}</div>
+          </div>
+        </sc-for>
+      </div>
+      <div style="display:flex; alignItems:center; justifyContent:center; gap:9px; marginTop:26px; color:#9a9a9a; fontSize:13.5px; fontWeight:600">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="10" width="16" height="11" rx="2" /><path d="M8 10V7a4 4 0 0 1 8 0v3" /></svg>
+        {{ t.paySecure }}
+      </div>
+    </div>
+  </section>
+
+  <section data-sec="true" style="padding:0 22px 60px">
+    <div style="maxWidth:1220px; margin:0 auto; padding:44px 30px; borderRadius:20px; background:#0d0d0d; border:1px solid rgba(255,255,255,.08)">
+      <h2 style="fontFamily:'Sora',sans-serif; textAlign:center; fontSize:clamp(26px,3.4vw,38px); fontWeight:800; margin:0 0 34px; letterSpacing:-.9px; color:#ffffff">{{ t.revTitle }}</h2>
+      <div style="display:grid; gridTemplateColumns:repeat(auto-fit,minmax(280px,1fr)); gap:16px">
+        <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="4">
+          <div style="padding:26px 24px; borderRadius:16px; background:#101010; border:1px solid rgba(255,255,255,.08); display:flex; flexDirection:column">
+            <div style="color:#10b981; letterSpacing:3px; fontSize:15px; textAlign:center; marginBottom:12px">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p style="margin:0 0 20px; color:#c4c4c4; fontSize:14.5px; lineHeight:1.6; textAlign:center; textWrap:pretty">{{ r.text }}</p>
+            <div style="marginTop:auto; display:flex; flexDirection:column; alignItems:center; gap:8px">
+              <div style="width:44px; height:44px; borderRadius:999px; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); display:flex; alignItems:center; justifyContent:center; color:#ffffff; fontFamily:'Sora',sans-serif; fontWeight:700">{{ r.initial }}</div>
+              <div style="fontSize:14px; fontWeight:700; color:#ffffff">{{ r.name }}</div>
+              <div style="fontSize:12px; color:#8a8a8a">{{ r.country }}</div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section data-sec="true" style="padding:0 22px 60px">
+    <div style="maxWidth:1220px; margin:0 auto">
+      <h2 style="fontFamily:'Sora',sans-serif; textAlign:center; fontSize:clamp(26px,3.6vw,40px); fontWeight:800; margin:0 0 34px; letterSpacing:-1px; color:#ffffff">{{ t.faqTitle }}</h2>
+      <div style="display:grid; gridTemplateColumns:repeat(auto-fit,minmax(300px,1fr)); gap:14px; alignItems:start">
+        <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="6">
+          <div style="borderRadius:14px; background:#101010; border:1px solid rgba(255,255,255,.08); overflow:hidden">
+            <button type="button" onClick="{{ f.toggle }}" style="width:100%; textAlign:left; background:transparent; border:none; color:#f2f2f2; fontFamily:'DM Sans',sans-serif; fontSize:15.5px; fontWeight:600; padding:18px 22px; display:flex; justifyContent:space-between; alignItems:center; gap:16px; cursor:pointer">
+              {{ f.q }}
+              <span style="{{ f.iconStyle }}">+</span>
+            </button>
+            <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
+              <p style="margin:0; padding:0 22px 20px; color:#9a9a9a; fontSize:14px; lineHeight:1.65; textWrap:pretty">{{ f.a }}</p>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section data-sec="true" style="padding:0 22px 80px">
+    <div style="maxWidth:1220px; margin:0 auto; padding:32px 34px; borderRadius:20px; background:#0d0d0d; border:1px solid rgba(255,255,255,.08); display:flex; flexWrap:wrap; alignItems:center; justifyContent:space-between; gap:24px">
+      <div style="display:flex; alignItems:center; gap:18px">
+        <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="flexShrink:0" aria-hidden="true"><path d="M4 14v-2a8 8 0 0 1 16 0v2" /><rect x="2" y="13.5" width="4.5" height="6.5" rx="2" /><rect x="17.5" y="13.5" width="4.5" height="6.5" rx="2" /><path d="M20 20v.5a2.5 2.5 0 0 1-2.5 2.5H13" /></svg>
+        <div>
+          <div style="fontFamily:'Sora',sans-serif; fontSize:clamp(20px,2.4vw,26px); fontWeight:800; color:#ffffff; letterSpacing:-.6px">{{ t.helpTitle }}</div>
+          <div style="fontSize:14px; color:#9a9a9a; marginTop:4px">{{ t.helpSub }}</div>
+        </div>
+      </div>
+      <div style="display:flex; flexWrap:wrap; gap:12px">
+        <a href="#plans" style="background:#10b981; color:#06120e; fontWeight:700; fontSize:15px; padding:13px 26px; borderRadius:999px" style-hover="background:#34d399">{{ t.ctaPlans }}</a>
+        <a href="{{ waMain }}" target="_blank" rel="noopener" style="border:1px solid rgba(255,255,255,.2); color:#ffffff; fontWeight:600; fontSize:15px; padding:13px 26px; borderRadius:999px" style-hover="borderColor:#10b981">{{ t.ctaStart }}</a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="padding:60px 22px 26px; background:#0b0b0b; borderTop:1px solid rgba(255,255,255,.08)">
+    <div style="maxWidth:1220px; margin:0 auto; display:grid; gridTemplateColumns:repeat(auto-fit,minmax(160px,1fr)); gap:32px">
+      <div>
+        <img src="assets/brand-logo.png" alt="IPTV Web" width="150" height="36" loading="lazy" style="height:36px; width:auto; marginBottom:16px" />
+        <p style="color:#9a9a9a; fontSize:14px; lineHeight:1.6; margin:0; maxWidth:260px">{{ t.ftBlurb }}</p>
+      </div>
+      <div>
+        <h4 style="fontFamily:'Sora',sans-serif; fontSize:15px; fontWeight:700; margin:0 0 16px; color:#ffffff">{{ t.ftFeatures }}</h4>
+        <ul style="listStyle:none; margin:0; padding:0; display:grid; gap:9px; color:#9a9a9a; fontSize:14px">
+          <li>HD / 4K</li>
+          <li>120K+ Movies &amp; Series</li>
+          <li>30K+ Live Channels</li>
+          <li>{{ t.ftFastSetup }}</li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="fontFamily:'Sora',sans-serif; fontSize:15px; fontWeight:700; margin:0 0 16px; color:#ffffff">{{ t.ftPayments }}</h4>
+        <ul style="listStyle:none; margin:0; padding:0; display:grid; gap:9px; color:#9a9a9a; fontSize:14px">
+          <sc-for list="{{ payments }}" as="pm" hint-placeholder-count="8">
+            <li>{{ pm.label }}</li>
+          </sc-for>
+        </ul>
+      </div>
+      <div>
+        <h4 style="fontFamily:'Sora',sans-serif; fontSize:15px; fontWeight:700; margin:0 0 16px; color:#ffffff">{{ t.ftQuick }}</h4>
+        <ul style="listStyle:none; margin:0; padding:0; display:grid; gap:9px; fontSize:14px">
+          <li><a href="Home.dc.html" style="color:#9a9a9a">{{ t.navHome }}</a></li>
+          <li><a href="Shop.dc.html" style="color:#9a9a9a">{{ t.navShop }}</a></li>
+          <li><a href="SetupGuide.dc.html" style="color:#9a9a9a">{{ t.navSetup }}</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="fontFamily:'Sora',sans-serif; fontSize:15px; fontWeight:700; margin:0 0 16px; color:#ffffff">{{ t.ftContact }}</h4>
+        <p style="color:#9a9a9a; fontSize:14px; margin:0 0 16px; lineHeight:1.6">{{ t.ftContactText }}</p>
+        <a href="{{ waMain }}" target="_blank" rel="noopener" style="background:#10b981; color:#06120e; fontWeight:700; fontSize:14px; padding:11px 22px; borderRadius:999px; display:inline-block" style-hover="background:#34d399">{{ t.ctaStart }}</a>
+      </div>
+    </div>
+    <div style="maxWidth:1220px; margin:44px auto 0; paddingTop:22px; borderTop:1px solid rgba(255,255,255,.06); textAlign:center; color:#787878; fontSize:13px">{{ t.ftRights }}</div>
+  </footer>
+
+  <a data-wa="true" href="{{ waMain }}" target="_blank" rel="noopener" aria-label="WhatsApp" style="position:fixed; right:22px; bottom:22px; zIndex:80; width:56px; height:56px; borderRadius:999px; background:#10b981; display:flex; alignItems:center; justifyContent:center; boxShadow:0 10px 26px rgba(0,0,0,.5)" style-hover="background:#34d399">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="#06120e" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.5 14.1c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6-2.6-1.1-4.3-3.8-4.4-4-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.1.2-.3.3-.1.6.1.3.6 1.1 1.4 1.7 1 .8 1.7 1.1 2 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.6-.1l1.8.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3Z"/></svg>
+  </a>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440}}">
+class Component extends DCLogic {
+  state = { lang: "en", openFaq: 0 };
+
+  DICT = {
+    en: {
+      navHome:"Home", navShop:"Shop", navSetup:"Setup Guide",
+      ctaStart:"Get Started", ctaBuy:"Buy Now", ctaPlans:"Check Our Plans",
+      heroEyebrow:"Shop", heroLine1:"Choose Your Plan", heroLine2:"Start Streaming Today",
+      heroSub:"Enjoy 30,000+ live channels and 120,000+ movies & series in 4K. Buy your IPTV subscription today.",
+      hs1:"Fast Activation", hs2:"24/7 Support", hs3:"All Devices", hs4:"Free Trial",
+      plansTitle:"Pick the Perfect Plan For You", plansSub:"All plans include full access to every channel, movie and series.", popular:"Most Popular",
+      planNames:["1 Month","3 Months","6 Months","12 Months","2 Devices"],
+      periods:["/month","/3 months","/6 months","/year","/year"],
+      pf:["30,000+ Live Channels","120K+ Movies & Series","4K / FHD / HD Quality","All Devices Supported","24/7 Support"],
+      b1t:"Fast Delivery", b1d:"Get your login details within seconds after payment.",
+      b2t:"Secure Payments", b2d:"Your payments are safe and encrypted.",
+      b3t:"Works Everywhere", b3d:"Watch on any device, anytime, anywhere.",
+      b4t:"High Quality", b4d:"4K, FHD & HD streaming.",
+      payTitle:"We Accept", paySecure:"Secure & Trusted Payments",
+      pay:["Credit Card","Debit Card","Digital Wallet","Mobile Pay","Bank Transfer","Bitcoin","Stablecoin","Crypto"],
+      revTitle:"Loved By Thousands of Viewers",
+      rev:["Best IPTV service I've ever used. I tested the 24-hour free trial first and was hooked immediately — the 4K quality is incredible and support is always there.","Was hesitant after bad experiences elsewhere, but this service delivered. Crisp streams during live games and instant 24/7 support.","Setup took two minutes on my Firestick. The VOD library is huge and updates fast.","Great selection of international channels and the yearly plan is excellent value."],
+      faqTitle:"Frequently Asked Questions",
+      faq:[["What is IPTV?","IPTV (Internet Protocol Television) lets you stream live TV, movies and series over the internet. Buy an IPTV subscription to enjoy instant access on your favourite devices."],["How do I receive my login details?","Once your payment is confirmed, your IPTV login details are sent quickly via WhatsApp or email so you can start streaming right away."],["Can I use it on multiple devices?","Yes, your subscription works on all compatible devices. Each subscription streams on one device at a time — pick the 2 Devices plan to watch on two at once."],["What payment methods do you accept?","We accept major cards, digital wallets, mobile pay, bank transfer and crypto. Contact us on WhatsApp to see the options available in your country."],["Is there a free trial?","Yes. We offer a 24-hour free trial so you can test the channel quality and make sure everything works on your device before subscribing."],["Can I upgrade my plan later?","Absolutely. Message us on WhatsApp at any time and we'll upgrade or extend your subscription."]],
+      helpTitle:"Need Help Choosing a Plan?", helpSub:"Our support team is here 24/7 to help you.",
+      ftBlurb:"The ultimate IPTV service provider with the best quality and support.",
+      ftFeatures:"Features", ftFastSetup:"Fast Setup", ftPayments:"Payment Methods", ftQuick:"Quick Links", ftContact:"Contact",
+      ftContactText:"Questions? We reply on WhatsApp around the clock.",
+      ftRights:"© 2026 IPTV Web. All Rights Reserved."
+    },
+    de: {
+      navHome:"Startseite", navShop:"Shop", navSetup:"Einrichtung",
+      ctaStart:"Jetzt starten", ctaBuy:"Jetzt kaufen", ctaPlans:"Pakete ansehen",
+      heroEyebrow:"Shop", heroLine1:"Wählen Sie Ihr Paket", heroLine2:"Starten Sie noch heute",
+      heroSub:"Über 30.000 Live-Kanäle und 120.000+ Filme & Serien in 4K. Sichern Sie sich noch heute Ihr IPTV-Abo.",
+      hs1:"Schnelle Aktivierung", hs2:"24/7 Support", hs3:"Alle Geräte", hs4:"Kostenloser Test",
+      plansTitle:"Das perfekte Paket für Sie", plansSub:"Alle Pakete enthalten vollen Zugriff auf alle Kanäle, Filme und Serien.", popular:"Am beliebtesten",
+      planNames:["1 Monat","3 Monate","6 Monate","12 Monate","2 Geräte"],
+      periods:["/Monat","/3 Monate","/6 Monate","/Jahr","/Jahr"],
+      pf:["30.000+ Live-Kanäle","120.000+ Filme & Serien","4K / FHD / HD Qualität","Alle Geräte unterstützt","24/7 Support"],
+      b1t:"Schnelle Lieferung", b1d:"Zugangsdaten innerhalb von Sekunden nach der Zahlung.",
+      b2t:"Sichere Zahlungen", b2d:"Ihre Zahlungen sind sicher und verschlüsselt.",
+      b3t:"Überall nutzbar", b3d:"Schauen Sie auf jedem Gerät, jederzeit und überall.",
+      b4t:"Hohe Qualität", b4d:"4K-, FHD- und HD-Streaming.",
+      payTitle:"Wir akzeptieren", paySecure:"Sichere & vertrauenswürdige Zahlungen",
+      pay:["Kreditkarte","Debitkarte","Digitale Wallet","Mobile Pay","Banküberweisung","Bitcoin","Stablecoin","Krypto"],
+      revTitle:"Von Tausenden Zuschauern geliebt",
+      rev:["Der beste IPTV-Dienst, den ich je genutzt habe. Ich habe zuerst den 24-Stunden-Test gemacht und war sofort begeistert – die 4K-Qualität ist unglaublich.","Nach schlechten Erfahrungen anderswo war ich skeptisch, aber dieser Dienst überzeugt. Klare Streams bei Live-Spielen und sofortiger Support.","Die Einrichtung auf meinem Firestick dauerte zwei Minuten. Die VOD-Bibliothek ist riesig und wird schnell aktualisiert.","Große Auswahl an internationalen Kanälen und das Jahrespaket ist ein hervorragendes Preis-Leistungs-Verhältnis."],
+      faqTitle:"Häufige Fragen",
+      faq:[["Was ist IPTV?","IPTV (Internet Protocol Television) ermöglicht Live-TV, Filme und Serien über das Internet. Mit einem IPTV-Abo haben Sie sofortigen Zugriff auf Ihren Lieblingsgeräten."],["Wie erhalte ich meine Zugangsdaten?","Sobald Ihre Zahlung bestätigt ist, erhalten Sie Ihre Zugangsdaten schnell per WhatsApp oder E-Mail."],["Kann ich mehrere Geräte nutzen?","Ja, Ihr Abo funktioniert auf allen kompatiblen Geräten. Pro Abo ist ein Stream gleichzeitig möglich – wählen Sie das 2-Geräte-Paket für zwei parallele Streams."],["Welche Zahlungsmethoden akzeptieren Sie?","Wir akzeptieren gängige Karten, digitale Wallets, Mobile Pay, Banküberweisung und Krypto. Schreiben Sie uns auf WhatsApp für die Optionen in Ihrem Land."],["Gibt es einen kostenlosen Test?","Ja. Wir bieten einen kostenlosen 24-Stunden-Test, damit Sie Qualität und Kompatibilität vorab prüfen können."],["Kann ich später upgraden?","Selbstverständlich. Schreiben Sie uns jederzeit auf WhatsApp und wir erweitern oder verlängern Ihr Abo."]],
+      helpTitle:"Brauchen Sie Hilfe bei der Auswahl?", helpSub:"Unser Support-Team ist rund um die Uhr für Sie da.",
+      ftBlurb:"Der ultimative IPTV-Anbieter mit bester Qualität und bestem Support.",
+      ftFeatures:"Funktionen", ftFastSetup:"Schnelle Einrichtung", ftPayments:"Zahlungsmethoden", ftQuick:"Schnellzugriff", ftContact:"Kontakt",
+      ftContactText:"Fragen? Wir antworten rund um die Uhr auf WhatsApp.",
+      ftRights:"© 2026 IPTV Web. Alle Rechte vorbehalten."
+    },
+    fr: {
+      navHome:"Accueil", navShop:"Boutique", navSetup:"Guide d'installation",
+      ctaStart:"Commencer", ctaBuy:"Acheter", ctaPlans:"Voir nos offres",
+      heroEyebrow:"Boutique", heroLine1:"Choisissez votre offre", heroLine2:"Commencez à streamer",
+      heroSub:"Plus de 30 000 chaînes en direct et 120 000 films et séries en 4K. Achetez votre abonnement IPTV dès aujourd'hui.",
+      hs1:"Activation rapide", hs2:"Support 24/7", hs3:"Tous appareils", hs4:"Essai gratuit",
+      plansTitle:"Trouvez l'offre parfaite", plansSub:"Toutes les offres incluent l'accès complet aux chaînes, films et séries.", popular:"Le plus populaire",
+      planNames:["1 mois","3 mois","6 mois","12 mois","2 appareils"],
+      periods:["/mois","/3 mois","/6 mois","/an","/an"],
+      pf:["30 000+ chaînes en direct","120 000+ films et séries","Qualité 4K / FHD / HD","Tous les appareils pris en charge","Support 24h/24 et 7j/7"],
+      b1t:"Livraison rapide", b1d:"Recevez vos identifiants quelques secondes après le paiement.",
+      b2t:"Paiements sécurisés", b2d:"Vos paiements sont sûrs et chiffrés.",
+      b3t:"Fonctionne partout", b3d:"Regardez sur tout appareil, partout et à tout moment.",
+      b4t:"Haute qualité", b4d:"Streaming 4K, FHD et HD.",
+      payTitle:"Nous acceptons", paySecure:"Paiements sécurisés et fiables",
+      pay:["Carte de crédit","Carte de débit","Portefeuille","Paiement mobile","Virement bancaire","Bitcoin","Stablecoin","Crypto"],
+      revTitle:"Adoré par des milliers de téléspectateurs",
+      rev:["Le meilleur service IPTV que j'aie utilisé. J'ai commencé par l'essai gratuit de 24 h et j'ai été conquis — la qualité 4K est incroyable.","J'étais hésitant après de mauvaises expériences ailleurs, mais ce service tient ses promesses. Flux nets pendant les matchs et support immédiat.","L'installation a pris deux minutes sur mon Firestick. La bibliothèque VOD est énorme et se met à jour rapidement.","Belle sélection de chaînes internationales et l'offre annuelle est très avantageuse."],
+      faqTitle:"Questions fréquentes",
+      faq:[["Qu'est-ce que l'IPTV ?","L'IPTV (Internet Protocol Television) permet de regarder la TV en direct, des films et des séries via Internet. Un abonnement IPTV vous donne un accès instantané sur vos appareils préférés."],["Comment vais-je recevoir mes identifiants ?","Dès la confirmation du paiement, vos identifiants vous sont envoyés rapidement par WhatsApp ou e-mail."],["Puis-je l'utiliser sur plusieurs appareils ?","Oui, votre abonnement fonctionne sur tous les appareils compatibles. Un seul flux est actif à la fois — choisissez l'offre 2 appareils pour en regarder deux simultanément."],["Quels moyens de paiement acceptez-vous ?","Cartes bancaires, portefeuilles numériques, paiement mobile, virement et crypto. Contactez-nous sur WhatsApp pour les options dans votre pays."],["Y a-t-il un essai gratuit ?","Oui. Un essai gratuit de 24 heures vous permet de tester la qualité et la compatibilité avant de vous abonner."],["Puis-je changer d'offre plus tard ?","Bien sûr. Écrivez-nous sur WhatsApp à tout moment et nous prolongerons ou améliorerons votre abonnement."]],
+      helpTitle:"Besoin d'aide pour choisir ?", helpSub:"Notre équipe support est disponible 24h/24 et 7j/7.",
+      ftBlurb:"Le fournisseur IPTV ultime, avec la meilleure qualité et le meilleur support.",
+      ftFeatures:"Fonctionnalités", ftFastSetup:"Installation rapide", ftPayments:"Moyens de paiement", ftQuick:"Liens rapides", ftContact:"Contact",
+      ftContactText:"Des questions ? Nous répondons sur WhatsApp 24h/24.",
+      ftRights:"© 2026 IPTV Web. Tous droits réservés."
+    },
+    es: {
+      navHome:"Inicio", navShop:"Tienda", navSetup:"Guía de instalación",
+      ctaStart:"Empezar", ctaBuy:"Comprar ahora", ctaPlans:"Ver nuestros planes",
+      heroEyebrow:"Tienda", heroLine1:"Elige tu plan", heroLine2:"Empieza a ver hoy",
+      heroSub:"Más de 30.000 canales en directo y 120.000 películas y series en 4K. Compra hoy tu suscripción IPTV.",
+      hs1:"Activación rápida", hs2:"Soporte 24/7", hs3:"Todos los dispositivos", hs4:"Prueba gratuita",
+      plansTitle:"Elige el plan perfecto para ti", plansSub:"Todos los planes incluyen acceso completo a canales, películas y series.", popular:"Más popular",
+      planNames:["1 mes","3 meses","6 meses","12 meses","2 dispositivos"],
+      periods:["/mes","/3 meses","/6 meses","/año","/año"],
+      pf:["30.000+ canales en directo","120.000+ películas y series","Calidad 4K / FHD / HD","Compatible con todos los dispositivos","Soporte 24/7"],
+      b1t:"Entrega rápida", b1d:"Recibe tus datos de acceso segundos después del pago.",
+      b2t:"Pagos seguros", b2d:"Tus pagos son seguros y están cifrados.",
+      b3t:"Funciona en todas partes", b3d:"Míralo en cualquier dispositivo, cuando quieras.",
+      b4t:"Alta calidad", b4d:"Streaming en 4K, FHD y HD.",
+      payTitle:"Aceptamos", paySecure:"Pagos seguros y de confianza",
+      pay:["Tarjeta de crédito","Tarjeta de débito","Monedero digital","Pago móvil","Transferencia","Bitcoin","Stablecoin","Cripto"],
+      revTitle:"Adorado por miles de espectadores",
+      rev:["El mejor servicio IPTV que he usado. Probé primero las 24 horas gratis y me enganché al instante: la calidad 4K es increíble.","Dudaba tras malas experiencias en otros sitios, pero este servicio cumple. Emisiones nítidas en directo y soporte inmediato.","La instalación en mi Firestick tardó dos minutos. La biblioteca VOD es enorme y se actualiza rápido.","Gran selección de canales internacionales y el plan anual tiene una relación calidad-precio excelente."],
+      faqTitle:"Preguntas frecuentes",
+      faq:[["¿Qué es IPTV?","IPTV (Televisión por Protocolo de Internet) te permite ver TV en directo, películas y series por Internet. Con una suscripción IPTV tienes acceso instantáneo en tus dispositivos favoritos."],["¿Cómo recibo mis datos de acceso?","En cuanto se confirma el pago, te enviamos tus datos de acceso rápidamente por WhatsApp o correo electrónico."],["¿Puedo usarlo en varios dispositivos?","Sí, tu suscripción funciona en todos los dispositivos compatibles. Cada suscripción reproduce en un dispositivo a la vez: elige el plan de 2 dispositivos para ver en dos."],["¿Qué métodos de pago aceptáis?","Aceptamos tarjetas, monederos digitales, pago móvil, transferencia y cripto. Escríbenos por WhatsApp para ver las opciones en tu país."],["¿Hay prueba gratuita?","Sí. Ofrecemos una prueba gratuita de 24 horas para que compruebes la calidad y la compatibilidad antes de suscribirte."],["¿Puedo cambiar de plan más adelante?","Por supuesto. Escríbenos por WhatsApp cuando quieras y ampliaremos o renovaremos tu suscripción."]],
+      helpTitle:"¿Necesitas ayuda para elegir?", helpSub:"Nuestro equipo de soporte está disponible 24/7.",
+      ftBlurb:"El proveedor IPTV definitivo, con la mejor calidad y soporte.",
+      ftFeatures:"Características", ftFastSetup:"Instalación rápida", ftPayments:"Métodos de pago", ftQuick:"Enlaces rápidos", ftContact:"Contacto",
+      ftContactText:"¿Preguntas? Respondemos por WhatsApp a cualquier hora.",
+      ftRights:"© 2026 IPTV Web. Todos los derechos reservados."
+    },
+    it: {
+      navHome:"Home", navShop:"Negozio", navSetup:"Guida all'installazione",
+      ctaStart:"Inizia ora", ctaBuy:"Acquista", ctaPlans:"Vedi i nostri piani",
+      heroEyebrow:"Negozio", heroLine1:"Scegli il tuo piano", heroLine2:"Inizia a guardare oggi",
+      heroSub:"Oltre 30.000 canali live e 120.000 film e serie in 4K. Acquista oggi il tuo abbonamento IPTV.",
+      hs1:"Attivazione rapida", hs2:"Assistenza 24/7", hs3:"Tutti i dispositivi", hs4:"Prova gratuita",
+      plansTitle:"Scegli il piano perfetto per te", plansSub:"Tutti i piani includono l'accesso completo a canali, film e serie.", popular:"Più scelto",
+      planNames:["1 mese","3 mesi","6 mesi","12 mesi","2 dispositivi"],
+      periods:["/mese","/3 mesi","/6 mesi","/anno","/anno"],
+      pf:["30.000+ canali live","120.000+ film e serie","Qualità 4K / FHD / HD","Tutti i dispositivi supportati","Assistenza 24/7"],
+      b1t:"Consegna rapida", b1d:"Ricevi le credenziali pochi secondi dopo il pagamento.",
+      b2t:"Pagamenti sicuri", b2d:"I tuoi pagamenti sono sicuri e crittografati.",
+      b3t:"Funziona ovunque", b3d:"Guarda su qualsiasi dispositivo, sempre e ovunque.",
+      b4t:"Alta qualità", b4d:"Streaming 4K, FHD e HD.",
+      payTitle:"Accettiamo", paySecure:"Pagamenti sicuri e affidabili",
+      pay:["Carta di credito","Carta di debito","Portafoglio digitale","Pagamento mobile","Bonifico bancario","Bitcoin","Stablecoin","Cripto"],
+      revTitle:"Amato da migliaia di spettatori",
+      rev:["Il miglior servizio IPTV che abbia mai usato. Ho provato le 24 ore gratuite e mi sono convinto subito: la qualità 4K è incredibile.","Ero titubante dopo brutte esperienze altrove, ma questo servizio mantiene le promesse. Stream nitidi durante le partite e assistenza immediata.","L'installazione sul mio Firestick ha richiesto due minuti. La libreria VOD è enorme e si aggiorna in fretta.","Ottima selezione di canali internazionali e il piano annuale ha un rapporto qualità-prezzo eccellente."],
+      faqTitle:"Domande frequenti",
+      faq:[["Che cos'è l'IPTV?","L'IPTV (Internet Protocol Television) permette di guardare TV live, film e serie via Internet. Con un abbonamento IPTV hai accesso immediato sui tuoi dispositivi preferiti."],["Come ricevo le credenziali?","Appena il pagamento è confermato, ricevi le credenziali rapidamente via WhatsApp o email."],["Posso usarlo su più dispositivi?","Sì, l'abbonamento funziona su tutti i dispositivi compatibili. Ogni abbonamento riproduce su un dispositivo alla volta: scegli il piano 2 dispositivi per guardarne due."],["Quali metodi di pagamento accettate?","Accettiamo carte, portafogli digitali, pagamenti mobili, bonifico e cripto. Scrivici su WhatsApp per le opzioni nel tuo Paese."],["C'è una prova gratuita?","Sì. Offriamo una prova gratuita di 24 ore per verificare qualità e compatibilità prima di abbonarti."],["Posso passare a un altro piano?","Certamente. Scrivici su WhatsApp in qualsiasi momento e aggiorneremo o rinnoveremo il tuo abbonamento."]],
+      helpTitle:"Hai bisogno di aiuto nella scelta?", helpSub:"Il nostro team di assistenza è disponibile 24/7.",
+      ftBlurb:"Il provider IPTV definitivo, con la migliore qualità e assistenza.",
+      ftFeatures:"Caratteristiche", ftFastSetup:"Attivazione rapida", ftPayments:"Metodi di pagamento", ftQuick:"Link rapidi", ftContact:"Contatti",
+      ftContactText:"Domande? Rispondiamo su WhatsApp a qualsiasi ora.",
+      ftRights:"© 2026 IPTV Web. Tutti i diritti riservati."
+    }
+  };
+
+  LANGS = [
+    { code: "EN", id: "en", name: "English" },
+    { code: "DE", id: "de", name: "Deutsch" },
+    { code: "FR", id: "fr", name: "Français" },
+    { code: "ES", id: "es", name: "Español" },
+    { code: "IT", id: "it", name: "Italiano" }
+  ];
+
+  COUNTRY_MAP = { DE: "de", AT: "de", CH: "de", FR: "fr", BE: "fr", ES: "es", MX: "es", AR: "es", IT: "it" };
+
+  componentDidMount() {
+    this.waitForConfig(0);
+    let saved = null;
+    try { saved = localStorage.getItem("iptvweb_lang"); } catch (e) {}
+    if (saved && this.DICT[saved]) { this.setState({ lang: saved }); return; }
+    const nav = (navigator.language || "en").slice(0, 2).toLowerCase();
+    if (this.DICT[nav] && nav !== "en") this.setState({ lang: nav });
+    fetch("https://ipapi.co/country/")
+      .then(r => (r.ok ? r.text() : null))
+      .then(c => {
+        if (!c) return;
+        const l = this.COUNTRY_MAP[String(c).trim().toUpperCase()];
+        let already = null;
+        try { already = localStorage.getItem("iptvweb_lang"); } catch (e) {}
+        if (l && !already) this.setState({ lang: l });
+      })
+      .catch(() => {});
+  }
+
+  pickLang(id) {
+    try { localStorage.setItem("iptvweb_lang", id); } catch (e) {}
+    this.setState({ lang: id });
+    if (document.documentElement) document.documentElement.lang = id;
+  }
+
+  wa(kind, vars) {
+    if (typeof window.waLink === "function") return window.waLink(this.state.lang, kind, vars);
+    var n = (window.WHATSAPP_CONFIG && window.WHATSAPP_CONFIG.number) || "447478036804";
+    return "https://wa.me/" + n;
+  }
+
+  waitForConfig(tries) {
+    var self = this;
+    if (typeof window.waLink === "function") { this.forceUpdate(); return; }
+    if ((tries || 0) > 40) return;
+    setTimeout(function () { self.waitForConfig((tries || 0) + 1); }, 100);
+  }
+
+  icon(paths, size) {
+    const e = React.createElement;
+    return e("svg", { width: size, height: size, viewBox: "0 0 24 24", fill: "none", stroke: "#10b981",
+      strokeWidth: 1.5, strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true" },
+      paths.map((d, i) => e("path", { key: i, d: d })));
+  }
+
+  PAY_PATHS = [
+    ["M2.5 7.5A2.5 2.5 0 0 1 5 5h14a2.5 2.5 0 0 1 2.5 2.5v9A2.5 2.5 0 0 1 19 19H5a2.5 2.5 0 0 1-2.5-2.5v-9Z", "M2.5 10h19", "M6 15h4"],
+    ["M2.5 7.5A2.5 2.5 0 0 1 5 5h14a2.5 2.5 0 0 1 2.5 2.5v9A2.5 2.5 0 0 1 19 19H5a2.5 2.5 0 0 1-2.5-2.5v-9Z", "M2.5 10h19", "M15 15h3.5"],
+    ["M3 8.5A2.5 2.5 0 0 1 5.5 6H18a2.5 2.5 0 0 1 2.5 2.5v8A2.5 2.5 0 0 1 18 19H5.5A2.5 2.5 0 0 1 3 16.5v-8Z", "M20.5 10.5H16a1.8 1.8 0 0 0 0 3.6h4.5", "M3 9V7a2 2 0 0 1 1.5-1.9l10-2.5"],
+    ["M7.5 2.5h9a1.5 1.5 0 0 1 1.5 1.5v16a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 6 20V4a1.5 1.5 0 0 1 1.5-1.5Z", "M10.5 18.5h3", "M14.5 7.5a3.5 3.5 0 0 0-5 0"],
+    ["M3 9.5 12 4l9 5.5", "M4.5 9.5v8", "M9.5 9.5v8", "M14.5 9.5v8", "M19.5 9.5v8", "M2.5 20.5h19"],
+    ["M12 2.8A9.2 9.2 0 1 0 12 21.2 9.2 9.2 0 0 0 12 2.8Z", "M9.6 8h4a2.2 2.2 0 0 1 0 4.4h-4V8Z", "M9.6 12.4h4.4a2.2 2.2 0 0 1 0 4.4H9.6v-4.4Z", "M11.4 6v2", "M13.6 6v2", "M11.4 16.8v2", "M13.6 16.8v2"],
+    ["M12 2.8A9.2 9.2 0 1 0 12 21.2 9.2 9.2 0 0 0 12 2.8Z", "M7.5 8.5h9", "M12 8.5v9"],
+    ["m12 2.5 6.5 9.6L12 16l-6.5-3.9L12 2.5Z", "m5.5 13.7 6.5 7.8 6.5-7.8L12 17.6l-6.5-3.9Z"]
+  ];
+
+  renderVals() {
+    const lang = this.state.lang;
+    const t = this.DICT[lang] || this.DICT.en;
+    const prices = ["€15", "€29", "€39", "€60", "€106"];
+    const popularIdx = 4;
+
+    const plans = t.planNames.map((n, i) => ({
+      name: n, price: prices[i], period: t.periods[i], popular: i === popularIdx,
+      features: t.pf.map(x => ({ text: x })),
+      href: this.wa("plan", { plan: n, price: prices[i] }),
+      cardStyle: "position:relative; display:flex; flexDirection:column; padding:28px 22px; borderRadius:18px; background:" +
+        (i === popularIdx ? "#121614" : "#101010") + "; border:1px solid " +
+        (i === popularIdx ? "rgba(16,185,129,.6)" : "rgba(255,255,255,.08)"),
+      btnStyle: "display:block; textAlign:center; padding:12px 18px; borderRadius:999px; fontWeight:700; fontSize:14.5px; background:" +
+        (i === popularIdx ? "#10b981" : "transparent") + "; color:" + (i === popularIdx ? "#06120e" : "#ffffff") +
+        "; border:1px solid " + (i === popularIdx ? "#10b981" : "rgba(255,255,255,.18)")
+    }));
+
+    const revMeta = [
+      { name: "Liam", country: "United Kingdom", initial: "L" },
+      { name: "Sofia R.", country: "Spain", initial: "S" },
+      { name: "Marco", country: "Italy", initial: "M" },
+      { name: "Camille", country: "France", initial: "C" }
+    ];
+
+    return {
+      t, lang,
+      langs: this.LANGS.map(l => ({
+        code: l.code, name: l.name, pick: () => this.pickLang(l.id),
+        style: "width:42px; padding:9px 0; borderRadius:9px; border:none; cursor:pointer; fontFamily:'DM Sans',sans-serif; fontSize:12px; fontWeight:700; letterSpacing:.5px; background:" +
+          (l.id === lang ? "#10b981" : "transparent") + "; color:" + (l.id === lang ? "#06120e" : "#9a9a9a")
+      })),
+      waMain: this.wa("main"),
+      plans,
+      payments: t.pay.map((label, i) => ({
+        label, icon: this.icon(this.PAY_PATHS[i], 28)
+      })),
+      reviews: revMeta.map((r, i) => ({ name: r.name, country: r.country, initial: r.initial, text: t.rev[i] })),
+      faqs: t.faq.map((f, i) => ({
+        q: f[0], a: f[1], open: this.state.openFaq === i,
+        toggle: () => this.setState(s => ({ openFaq: s.openFaq === i ? -1 : i })),
+        iconStyle: "color:#10b981; fontSize:22px; lineHeight:1; flexShrink:0; transform:rotate(" + (this.state.openFaq === i ? "45deg" : "0deg") + ")"
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>

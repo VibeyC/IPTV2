@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="description" content="IPTV Web setup guide — install and activate your IPTV subscription on Smart TV, Firestick, Android, iOS, PC, MAG and Enigma2 in minutes." />
+<meta name="theme-color" content="#070707" />
+<meta name="ext-resource-dependency" content="assets/player-smarters.png" />
+<meta name="ext-resource-dependency" content="assets/player-tivimate.png" />
+<meta name="ext-resource-dependency" content="assets/player-ibo.png" />
+<meta name="ext-resource-dependency" content="assets/player-xciptv.png" />
+<meta name="ext-resource-dependency" content="assets/player-smartiptv.png" />
+<meta name="ext-resource-dependency" content="assets/player-flix.jpg" />
+<template id="__bundler_thumbnail" data-bg-color="#070707">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#070707"/>
+    <rect x="330" y="250" width="540" height="320" rx="26" fill="none" stroke="#10b981" stroke-width="16"/>
+    <path d="M545 350 L680 410 L545 470 Z" fill="#10b981"/>
+    <rect x="520" y="600" width="160" height="16" rx="8" fill="#10b981"/>
+  </svg>
+</template>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@700;800&family=DM+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+<script src="./whatsapp-config.js"></script>
+<style>
+  html, body { margin:0; padding:0; background:#070707; }
+  body { font-family:'DM Sans', system-ui, sans-serif; -webkit-font-smoothing:antialiased; }
+  * { box-sizing:border-box; }
+  a { color:#34d399; text-decoration:none; }
+  a:hover { color:#6ee7b7; }
+  img { display:block; max-width:100%; }
+  [data-page-shell] { padding-left: 0; }
+  @media (max-width: 1340px) and (min-width: 761px) { [data-page-shell] { padding-left: 58px; } }
+  [data-mobilenav] { display: none; }
+  @media (max-width: 900px) { [data-sec] { padding-top: 56px !important; padding-bottom: 56px !important; } }
+  @media (max-width: 760px) {
+    [data-page-shell] { padding-left: 0; padding-bottom: 56px; }
+    [data-navlink] { display: none; }
+    [data-mobilenav] { display: flex; gap: 20px; justify-content: center; padding: 0 22px 12px; flex-wrap: wrap; }
+    [data-mobilenav] a { font-size: 14px; font-weight: 600; }
+    [data-langrail] {
+      top: auto; bottom: 0; left: 0; right: 0; transform: none;
+      flex-direction: row; justify-content: center;
+      border-radius: 0; border-left: none; border-right: none;
+      border-bottom: none; border-top: 1px solid rgba(255,255,255,.1);
+    }
+    [data-wa] { bottom: 70px !important; width: 50px !important; height: 50px !important; }
+  }
+</style>
+</helmet>
+
+<div data-page-shell="true" style="background:#070707; color:#f2f2f2; overflow-x:hidden; min-height:100vh">
+
+  <div data-langrail="true" style="position:fixed; left:0; top:50%; transform:translateY(-50%); zIndex:80; display:flex; flexDirection:column; gap:2px; padding:6px; background:rgba(13,13,13,.94); border:1px solid rgba(255,255,255,.1); borderLeft:none; borderRadius:0 14px 14px 0; backdropFilter:blur(10px)">
+    <sc-for list="{{ langs }}" as="lg" hint-placeholder-count="5">
+      <button type="button" onClick="{{ lg.pick }}" title="{{ lg.name }}" style="{{ lg.style }}">{{ lg.code }}</button>
+    </sc-for>
+  </div>
+
+  <header style="position:sticky; top:0; zIndex:70; background:rgba(7,7,7,.9); backdropFilter:blur(14px); borderBottom:1px solid rgba(255,255,255,.08)">
+    <div style="maxWidth:1220px; margin:0 auto; padding:14px 22px; display:flex; alignItems:center; justifyContent:space-between; gap:20px">
+      <a href="Home.dc.html" style="display:flex; alignItems:center"><img src="assets/brand-logo.png" alt="IPTV Web" width="160" height="38" style="height:38px; width:auto" /></a>
+      <nav style="display:flex; alignItems:center; gap:34px">
+        <a href="Home.dc.html" data-navlink="true" style="color:#9a9a9a; fontSize:15px; fontWeight:500">{{ t.navHome }}</a>
+        <a href="Shop.dc.html" data-navlink="true" style="color:#9a9a9a; fontSize:15px; fontWeight:500">{{ t.navShop }}</a>
+        <a href="SetupGuide.dc.html" data-navlink="true" style="color:#ffffff; fontSize:15px; fontWeight:500; borderBottom:2px solid #10b981; paddingBottom:3px">{{ t.navSetup }}</a>
+        <a href="{{ waMain }}" target="_blank" rel="noopener" style="background:#10b981; color:#06120e; fontWeight:700; fontSize:14px; padding:11px 22px; borderRadius:999px; letterSpacing:.2px" style-hover="background:#34d399">{{ t.ctaStart }}</a>
+      </nav>
+    </div>
+    <div data-mobilenav="true">
+      <a href="Home.dc.html" style="color:#9a9a9a">{{ t.navHome }}</a>
+      <a href="Shop.dc.html" style="color:#9a9a9a">{{ t.navShop }}</a>
+      <a href="SetupGuide.dc.html" style="color:#ffffff">{{ t.navSetup }}</a>
+    </div>
+  </header>
+
+  <section id="top" data-sec="true" style="padding:88px 22px 72px; borderBottom:1px solid rgba(255,255,255,.07); background:#0b0b0b">
+    <div style="maxWidth:900px; margin:0 auto; textAlign:center">
+      <div style="color:#34d399; fontSize:12px; fontWeight:700; letterSpacing:3px; textTransform:uppercase; marginBottom:16px">{{ t.heroEyebrow }}</div>
+      <h1 style="fontFamily:'Sora',sans-serif; fontSize:clamp(34px,4.8vw,54px); lineHeight:1.08; fontWeight:800; margin:0 0 18px; letterSpacing:-1.5px; color:#ffffff; textWrap:balance">{{ t.heroTitle }}</h1>
+      <p style="fontSize:17px; lineHeight:1.65; color:#a8a8a8; margin:0 auto 28px; maxWidth:620px; textWrap:pretty">{{ t.heroSub }}</p>
+      <div style="display:flex; flexWrap:wrap; gap:12px; justifyContent:center">
+        <a href="{{ waMain }}" target="_blank" rel="noopener" style="background:#10b981; color:#06120e; fontWeight:700; fontSize:15px; padding:14px 30px; borderRadius:999px" style-hover="background:#34d399">{{ t.ctaHelp }}</a>
+        <a href="Shop.dc.html" style="border:1px solid rgba(255,255,255,.2); color:#ffffff; fontWeight:600; fontSize:15px; padding:14px 30px; borderRadius:999px" style-hover="borderColor:#10b981">{{ t.ctaPlans }}</a>
+      </div>
+    </div>
+  </section>
+
+  <section data-sec="true" style="padding:78px 22px">
+    <div style="maxWidth:1220px; margin:0 auto">
+      <h2 style="fontFamily:'Sora',sans-serif; textAlign:center; fontSize:clamp(26px,3.6vw,40px); fontWeight:800; margin:0 0 12px; letterSpacing:-1px; color:#ffffff">{{ t.startTitle }}</h2>
+      <p style="textAlign:center; color:#9a9a9a; fontSize:16px; margin:0 auto 42px; maxWidth:620px">{{ t.startSub }}</p>
+      <div style="display:grid; gridTemplateColumns:repeat(auto-fit,minmax(250px,1fr)); gap:16px">
+        <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
+          <div style="padding:30px 26px; borderRadius:18px; background:#101010; border:1px solid rgba(255,255,255,.08)">
+            <div style="fontFamily:'Sora',sans-serif; fontSize:30px; fontWeight:800; color:rgba(16,185,129,.35); lineHeight:1; marginBottom:12px">{{ s.n }}</div>
+            <h3 style="fontFamily:'Sora',sans-serif; fontSize:17.5px; fontWeight:700; margin:0 0 9px; color:#ffffff">{{ s.title }}</h3>
+            <p style="margin:0; color:#9a9a9a; fontSize:14.5px; lineHeight:1.6">{{ s.desc }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="devices" data-sec="true" style="padding:78px 22px; background:#0b0b0b; borderTop:1px solid rgba(255,255,255,.07); borderBottom:1px solid rgba(255,255,255,.07)">
+    <div style="maxWidth:1220px; margin:0 auto">
+      <h2 style="fontFamily:'Sora',sans-serif; textAlign:center; fontSize:clamp(26px,3.6vw,40px); fontWeight:800; margin:0 0 12px; letterSpacing:-1px; color:#ffffff">{{ t.devTitle }}</h2>
+      <p style="textAlign:center; color:#9a9a9a; fontSize:16px; margin:0 auto 42px; maxWidth:640px">{{ t.devSub }}</p>
+      <div style="display:grid; gridTemplateColumns:repeat(auto-fit,minmax(300px,1fr)); gap:16px">
+        <sc-for list="{{ guides }}" as="g" hint-placeholder-count="6">
+          <div style="padding:28px 26px; borderRadius:18px; background:#101010; border:1px solid rgba(255,255,255,.08)" style-hover="borderColor:rgba(16,185,129,.45)">
+            <div style="display:flex; alignItems:center; gap:13px; marginBottom:16px">
+              <div style="width:42px; height:42px; borderRadius:12px; background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1); display:flex; alignItems:center; justifyContent:center; flexShrink:0">{{ g.icon }}</div>
+              <div>
+                <h3 style="fontFamily:'Sora',sans-serif; fontSize:17px; fontWeight:700; margin:0; color:#ffffff">{{ g.name }}</h3>
+                <div style="fontSize:12.5px; color:#8a8a8a; marginTop:2px">{{ g.app }}</div>
+              </div>
+            </div>
+            <ol style="margin:0; padding:0 0 0 18px; display:grid; gap:8px; color:#9a9a9a; fontSize:14px; lineHeight:1.55">
+              <sc-for list="{{ g.lines }}" as="l" hint-placeholder-count="4">
+                <li>{{ l.text }}</li>
+              </sc-for>
+            </ol>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section data-sec="true" style="padding:78px 22px">
+    <div style="maxWidth:1220px; margin:0 auto">
+      <h2 style="fontFamily:'Sora',sans-serif; textAlign:center; fontSize:clamp(26px,3.6vw,40px); fontWeight:800; margin:0 0 12px; letterSpacing:-1px; color:#ffffff">{{ t.playersTitle }}</h2>
+      <p style="textAlign:center; color:#9a9a9a; fontSize:16px; margin:0 auto 42px; maxWidth:640px; textWrap:pretty">{{ t.playersSub }}</p>
+      <div style="display:grid; gridTemplateColumns:repeat(auto-fit,minmax(170px,1fr)); gap:16px">
+        <div style="padding:26px 18px; borderRadius:16px; background:#101010; border:1px solid rgba(255,255,255,.08); textAlign:center; display:flex; flexDirection:column; alignItems:center; gap:14px" style-hover="borderColor:rgba(16,185,129,.5)">
+          <img src="assets/player-smarters.png" alt="IPTV Smarters Pro player app" width="150" height="150" loading="lazy" style="width:74px; height:74px; objectFit:contain; borderRadius:16px; padding:6px; background:#1a1a1a" />
+          <div>
+            <div style="fontFamily:'Sora',sans-serif; fontSize:15px; fontWeight:700; color:#ffffff">IPTV Smarters Pro</div>
+            <div style="fontSize:12.5px; color:#8a8a8a; marginTop:4px">Android · iOS · Smart TV</div>
+          </div>
+        </div>
+        <div style="padding:26px 18px; borderRadius:16px; background:#101010; border:1px solid rgba(255,255,255,.08); textAlign:center; display:flex; flexDirection:column; alignItems:center; gap:14px" style-hover="borderColor:rgba(16,185,129,.5)">
+          <img src="assets/player-tivimate.png" alt="TiviMate player app" width="150" height="150" loading="lazy" style="width:74px; height:74px; objectFit:contain; borderRadius:16px; padding:6px; background:#ffffff" />
+          <div>
+            <div style="fontFamily:'Sora',sans-serif; fontSize:15px; fontWeight:700; color:#ffffff">TiviMate</div>
+            <div style="fontSize:12.5px; color:#8a8a8a; marginTop:4px">Android TV · Firestick</div>
+          </div>
+        </div>
+        <div style="padding:26px 18px; borderRadius:16px; background:#101010; border:1px solid rgba(255,255,255,.08); textAlign:center; display:flex; flexDirection:column; alignItems:center; gap:14px" style-hover="borderColor:rgba(16,185,129,.5)">
+          <img src="assets/player-ibo.png" alt="IBO Player Pro app" width="150" height="150" loading="lazy" style="width:74px; height:74px; objectFit:contain; borderRadius:16px; padding:6px; background:#ffffff" />
+          <div>
+            <div style="fontFamily:'Sora',sans-serif; fontSize:15px; fontWeight:700; color:#ffffff">IBO Player Pro</div>
+            <div style="fontSize:12.5px; color:#8a8a8a; marginTop:4px">Smart TV · Android</div>
+          </div>
+        </div>
+        <div style="padding:26px 18px; borderRadius:16px; background:#101010; border:1px solid rgba(255,255,255,.08); textAlign:center; display:flex; flexDirection:column; alignItems:center; gap:14px" style-hover="borderColor:rgba(16,185,129,.5)">
+          <img src="assets/player-xciptv.png" alt="XCIPTV Player app" width="150" height="150" loading="lazy" style="width:74px; height:74px; objectFit:contain; borderRadius:16px; padding:6px; background:#ffffff" />
+          <div>
+            <div style="fontFamily:'Sora',sans-serif; fontSize:15px; fontWeight:700; color:#ffffff">XCIPTV Player</div>
+            <div style="fontSize:12.5px; color:#8a8a8a; marginTop:4px">Android · Firestick</div>
+          </div>
+        </div>
+        <div style="padding:26px 18px; borderRadius:16px; background:#101010; border:1px solid rgba(255,255,255,.08); textAlign:center; display:flex; flexDirection:column; alignItems:center; gap:14px" style-hover="borderColor:rgba(16,185,129,.5)">
+          <img src="assets/player-smartiptv.png" alt="Smart IPTV app" width="150" height="150" loading="lazy" style="width:74px; height:74px; objectFit:contain; borderRadius:16px; padding:6px; background:#ffffff" />
+          <div>
+            <div style="fontFamily:'Sora',sans-serif; fontSize:15px; fontWeight:700; color:#ffffff">Smart IPTV</div>
+            <div style="fontSize:12.5px; color:#8a8a8a; marginTop:4px">Samsung · LG</div>
+          </div>
+        </div>
+        <div style="padding:26px 18px; borderRadius:16px; background:#101010; border:1px solid rgba(255,255,255,.08); textAlign:center; display:flex; flexDirection:column; alignItems:center; gap:14px" style-hover="borderColor:rgba(16,185,129,.5)">
+          <img src="assets/player-flix.jpg" alt="Flix IPTV app" width="150" height="150" loading="lazy" style="width:74px; height:74px; objectFit:contain; borderRadius:16px; padding:6px; background:#ffffff" />
+          <div>
+            <div style="fontFamily:'Sora',sans-serif; fontSize:15px; fontWeight:700; color:#ffffff">Flix IPTV</div>
+            <div style="fontSize:12.5px; color:#8a8a8a; marginTop:4px">Smart TV · Mobile</div>
+          </div>
+        </div>
+      </div>
+      <p style="textAlign:center; color:#8a8a8a; fontSize:13.5px; margin:28px auto 0; maxWidth:700px; lineHeight:1.6">{{ t.playersNote }}</p>
+    </div>
+  </section>
+
+  <section data-sec="true" style="padding:0 22px 78px">
+    <div style="maxWidth:1220px; margin:0 auto; padding:44px 34px; borderRadius:20px; background:#0d0d0d; border:1px solid rgba(255,255,255,.08)">
+      <h2 style="fontFamily:'Sora',sans-serif; textAlign:center; fontSize:clamp(24px,3.2vw,34px); fontWeight:800; margin:0 0 12px; letterSpacing:-.9px; color:#ffffff">{{ t.tipsTitle }}</h2>
+      <p style="textAlign:center; color:#9a9a9a; fontSize:15.5px; margin:0 auto 34px; maxWidth:620px">{{ t.tipsSub }}</p>
+      <div style="display:grid; gridTemplateColumns:repeat(auto-fit,minmax(240px,1fr)); gap:16px">
+        <sc-for list="{{ tips }}" as="tip" hint-placeholder-count="4">
+          <div style="padding:22px 20px; borderRadius:14px; background:#101010; border:1px solid rgba(255,255,255,.08)">
+            <h3 style="fontFamily:'Sora',sans-serif; fontSize:15.5px; fontWeight:700; margin:0 0 7px; color:#ffffff">{{ tip.title }}</h3>
+            <p style="margin:0; color:#9a9a9a; fontSize:14px; lineHeight:1.6">{{ tip.desc }}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section data-sec="true" style="padding:0 22px 78px">
+    <div style="maxWidth:840px; margin:0 auto">
+      <h2 style="fontFamily:'Sora',sans-serif; textAlign:center; fontSize:clamp(26px,3.6vw,40px); fontWeight:800; margin:0 0 34px; letterSpacing:-1px; color:#ffffff">{{ t.faqTitle }}</h2>
+      <div style="display:grid; gap:12px">
+        <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="5">
+          <div style="borderRadius:14px; background:#101010; border:1px solid rgba(255,255,255,.08); overflow:hidden">
+            <button type="button" onClick="{{ f.toggle }}" style="width:100%; textAlign:left; background:transparent; border:none; color:#f2f2f2; fontFamily:'DM Sans',sans-serif; fontSize:16px; fontWeight:600; padding:19px 22px; display:flex; justifyContent:space-between; alignItems:center; gap:16px; cursor:pointer">
+              {{ f.q }}
+              <span style="{{ f.iconStyle }}">+</span>
+            </button>
+            <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
+              <p style="margin:0; padding:0 22px 20px; color:#9a9a9a; fontSize:14.5px; lineHeight:1.65; textWrap:pretty">{{ f.a }}</p>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section data-sec="true" style="padding:0 22px 80px">
+    <div style="maxWidth:1220px; margin:0 auto; padding:44px 34px; borderRadius:20px; background:#0d0d0d; border:1px solid rgba(16,185,129,.3); textAlign:center">
+      <h2 style="fontFamily:'Sora',sans-serif; fontSize:clamp(24px,3.2vw,34px); fontWeight:800; margin:0 0 12px; letterSpacing:-.9px; color:#ffffff; textWrap:balance">{{ t.ctaTitle }}</h2>
+      <p style="color:#9a9a9a; fontSize:16px; margin:0 auto 26px; maxWidth:560px">{{ t.ctaSub }}</p>
+      <div style="display:flex; flexWrap:wrap; gap:12px; justifyContent:center">
+        <a href="{{ waMain }}" target="_blank" rel="noopener" style="background:#10b981; color:#06120e; fontWeight:700; fontSize:15px; padding:14px 30px; borderRadius:999px" style-hover="background:#34d399">{{ t.ctaHelp }}</a>
+        <a href="{{ waTrial }}" target="_blank" rel="noopener" style="border:1px solid rgba(255,255,255,.2); color:#ffffff; fontWeight:600; fontSize:15px; padding:14px 30px; borderRadius:999px" style-hover="borderColor:#10b981">{{ t.ctaTrial }}</a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="padding:60px 22px 26px; background:#0b0b0b; borderTop:1px solid rgba(255,255,255,.08)">
+    <div style="maxWidth:1220px; margin:0 auto; display:grid; gridTemplateColumns:repeat(auto-fit,minmax(160px,1fr)); gap:32px">
+      <div>
+        <img src="assets/brand-logo.png" alt="IPTV Web" width="150" height="36" loading="lazy" style="height:36px; width:auto; marginBottom:16px" />
+        <p style="color:#9a9a9a; fontSize:14px; lineHeight:1.6; margin:0; maxWidth:260px">{{ t.ftBlurb }}</p>
+      </div>
+      <div>
+        <h4 style="fontFamily:'Sora',sans-serif; fontSize:15px; fontWeight:700; margin:0 0 16px; color:#ffffff">{{ t.ftFeatures }}</h4>
+        <ul style="listStyle:none; margin:0; padding:0; display:grid; gap:9px; color:#9a9a9a; fontSize:14px">
+          <li>HD / 4K</li>
+          <li>120K+ Movies &amp; Series</li>
+          <li>30K+ Live Channels</li>
+          <li>{{ t.ftFastSetup }}</li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="fontFamily:'Sora',sans-serif; fontSize:15px; fontWeight:700; margin:0 0 16px; color:#ffffff">{{ t.ftQuick }}</h4>
+        <ul style="listStyle:none; margin:0; padding:0; display:grid; gap:9px; fontSize:14px">
+          <li><a href="Home.dc.html" style="color:#9a9a9a">{{ t.navHome }}</a></li>
+          <li><a href="Shop.dc.html" style="color:#9a9a9a">{{ t.navShop }}</a></li>
+          <li><a href="SetupGuide.dc.html" style="color:#9a9a9a">{{ t.navSetup }}</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 style="fontFamily:'Sora',sans-serif; fontSize:15px; fontWeight:700; margin:0 0 16px; color:#ffffff">{{ t.ftContact }}</h4>
+        <p style="color:#9a9a9a; fontSize:14px; margin:0 0 16px; lineHeight:1.6">{{ t.ftContactText }}</p>
+        <a href="{{ waMain }}" target="_blank" rel="noopener" style="background:#10b981; color:#06120e; fontWeight:700; fontSize:14px; padding:11px 22px; borderRadius:999px; display:inline-block" style-hover="background:#34d399">{{ t.ctaStart }}</a>
+      </div>
+    </div>
+    <div style="maxWidth:1220px; margin:44px auto 0; paddingTop:22px; borderTop:1px solid rgba(255,255,255,.06); textAlign:center; color:#787878; fontSize:13px">{{ t.ftRights }}</div>
+  </footer>
+
+  <a data-wa="true" href="{{ waMain }}" target="_blank" rel="noopener" aria-label="WhatsApp" style="position:fixed; right:22px; bottom:22px; zIndex:80; width:56px; height:56px; borderRadius:999px; background:#10b981; display:flex; alignItems:center; justifyContent:center; boxShadow:0 10px 26px rgba(0,0,0,.5)" style-hover="background:#34d399">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="#06120e" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.5 14.1c-.2.6-1.2 1.2-1.7 1.2-.5.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.6-2.6-1.1-4.3-3.8-4.4-4-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4-.1.5l-.3.4c-.1.2-.3.3-.1.6.1.3.6 1.1 1.4 1.7 1 .8 1.7 1.1 2 1.2.2.1.4.1.5-.1l.7-.8c.2-.2.3-.2.6-.1l1.8.9c.3.1.5.2.5.3.1.2.1.7-.1 1.3Z"/></svg>
+  </a>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440}}">
+class Component extends DCLogic {
+  state = { lang: "en", openFaq: 0 };
+
+  DICT = {
+    en: {
+      navHome:"Home", navShop:"Shop", navSetup:"Setup Guide",
+      ctaStart:"Get Started", ctaPlans:"View Our Plans", ctaHelp:"Get Help On WhatsApp", ctaTrial:"Start Free Trial",
+      heroEyebrow:"Setup Guide",
+      heroTitle:"Set Up IPTV In Under 5 Minutes",
+      heroSub:"Follow the steps for your device below. If anything goes wrong, message us on WhatsApp and we'll set it up with you.",
+      startTitle:"Before You Start", startSub:"Four things to have ready before installing.",
+      steps:[["Your Subscription","Order a plan or request a free 24-hour trial on WhatsApp."],["Your Credentials","We send your username, password and server URL (or an M3U link)."],["A Supported Player","Install one of the recommended IPTV apps on your device."],["A Stable Connection","15–25 Mbps for HD, 25 Mbps+ for 4K. Wired or 5GHz Wi-Fi is best."]],
+      devTitle:"Setup By Device", devSub:"Pick your device and follow the numbered steps.",
+      guides:[
+        ["Smart TV","Samsung · LG",["Open the app store on your TV and install Smart IPTV or IBO Player.","Note the MAC address shown on the app's start screen.","Send that MAC address to us on WhatsApp.","We activate your device and your channel list loads automatically."]],
+        ["Firestick / Fire TV","Downloader app",["Enable Apps from Unknown Sources in Settings > My Fire TV > Developer Options.","Install the Downloader app and enter the link we send you.","Install IPTV Smarters Pro or TiviMate.","Log in with the credentials we sent and start watching."]],
+        ["Android TV / Android Box","Google Play",["Open Google Play and install IPTV Smarters Pro, TiviMate or XCIPTV.","Choose Login with Xtream Codes API.","Enter your username, password and server URL.","Wait for the channel list to load, then start streaming."]],
+        ["Android Phone / Tablet","Google Play",["Install IPTV Smarters Pro from Google Play.","Select Login with Xtream Codes API.","Enter the username, password and server URL from WhatsApp.","Tap Add User and open Live TV, Movies or Series."]],
+        ["iPhone / iPad / Apple TV","App Store",["Install IPTV Smarters Player or Flix IPTV from the App Store.","Choose Xtream Codes login (or Add M3U URL).","Enter your credentials exactly as we sent them.","Save and wait for the playlist to load."]],
+        ["MAG Box / Enigma2","Portal / M3U",["Go to Settings > System Settings > Servers > Portals on your MAG box.","Enter the portal URL we provide and save.","Restart the device from the menu.","For Enigma2, send us your device details and we'll provide the M3U line."]]
+      ],
+      playersTitle:"Recommended IPTV Players",
+      playersSub:"Any of these apps work with your subscription. Not sure which one? Ask us and we'll recommend the best fit for your device.",
+      playersNote:"All logos are the property of their respective owners. IPTV Web is not affiliated with these applications — we simply provide credentials that work with them.",
+      players:[["IPTV Smarters Pro","Android · iOS · Smart TV"],["TiviMate","Android TV · Firestick"],["IBO Player Pro","Smart TV · Android"],["XCIPTV Player","Android · Firestick"],["Smart IPTV","Samsung · LG"],["Flix IPTV","Smart TV · Mobile"]],
+      tipsTitle:"Troubleshooting Tips", tipsSub:"Most issues are solved in under a minute with one of these.",
+      tips:[["Buffering or freezing","Restart your router, switch to a 5GHz network or an ethernet cable, and close background apps."],["Channels not loading","Fully close and reopen the player, or re-enter your credentials — copy and paste rather than typing."],["Login failed","Check for extra spaces in the username or password and confirm the server URL is exactly as we sent it."],["Wrong channel list","Refresh the playlist inside the app settings; your list updates automatically once refreshed."]],
+      faqTitle:"Setup FAQ",
+      faq:[["How long does activation take?","Usually under 5 minutes. Once your order or trial is confirmed, we send your credentials on WhatsApp straight away."],["Which app should I use?","TiviMate is best on Android TV and Firestick, IPTV Smarters Pro works everywhere, and Smart IPTV or IBO Player suit Samsung and LG TVs."],["Can I watch on two devices at once?","Each subscription streams on one device at a time. Choose the 2 Devices plan if you need two simultaneous streams."],["Do I need a VPN?","Not usually. If your internet provider throttles streaming, a VPN can help — ask us and we'll advise."],["Can you set it up for me?","Yes. Message us on WhatsApp and our team will walk you through it step by step, free of charge."]],
+      ctaTitle:"Stuck Somewhere? We'll Do It With You.",
+      ctaSub:"Our support team is on WhatsApp 24/7 and can guide you through every step.",
+      ftBlurb:"The ultimate IPTV service provider with the best quality and support.",
+      ftFeatures:"Features", ftFastSetup:"Fast Setup", ftQuick:"Quick Links", ftContact:"Contact",
+      ftContactText:"Questions? We reply on WhatsApp around the clock.",
+      ftRights:"© 2026 IPTV Web. All Rights Reserved."
+    },
+    de: {
+      navHome:"Startseite", navShop:"Shop", navSetup:"Einrichtung",
+      ctaStart:"Jetzt starten", ctaPlans:"Pakete ansehen", ctaHelp:"Hilfe auf WhatsApp", ctaTrial:"Kostenlos testen",
+      heroEyebrow:"Einrichtung",
+      heroTitle:"IPTV in unter 5 Minuten einrichten",
+      heroSub:"Folgen Sie den Schritten für Ihr Gerät. Wenn etwas nicht klappt, schreiben Sie uns auf WhatsApp – wir richten es gemeinsam ein.",
+      startTitle:"Bevor Sie starten", startSub:"Vier Dinge, die Sie vor der Installation bereithalten sollten.",
+      steps:[["Ihr Abo","Bestellen Sie ein Paket oder fordern Sie einen kostenlosen 24-Stunden-Test an."],["Ihre Zugangsdaten","Wir senden Benutzername, Passwort und Server-URL (oder einen M3U-Link)."],["Ein unterstützter Player","Installieren Sie eine der empfohlenen IPTV-Apps auf Ihrem Gerät."],["Stabile Verbindung","15–25 Mbit/s für HD, ab 25 Mbit/s für 4K. LAN oder 5-GHz-WLAN ist am besten."]],
+      devTitle:"Einrichtung nach Gerät", devSub:"Wählen Sie Ihr Gerät und folgen Sie den nummerierten Schritten.",
+      guides:[
+        ["Smart TV","Samsung · LG",["Öffnen Sie den App Store Ihres TVs und installieren Sie Smart IPTV oder IBO Player.","Notieren Sie die MAC-Adresse auf dem Startbildschirm der App.","Senden Sie uns diese MAC-Adresse per WhatsApp.","Wir aktivieren Ihr Gerät und die Senderliste lädt automatisch."]],
+        ["Firestick / Fire TV","Downloader-App",["Aktivieren Sie Apps unbekannter Herkunft unter Einstellungen > Mein Fire TV > Entwickleroptionen.","Installieren Sie die Downloader-App und geben Sie den von uns gesendeten Link ein.","Installieren Sie IPTV Smarters Pro oder TiviMate.","Melden Sie sich mit Ihren Zugangsdaten an und schauen Sie los."]],
+        ["Android TV / Android Box","Google Play",["Installieren Sie IPTV Smarters Pro, TiviMate oder XCIPTV aus Google Play.","Wählen Sie Login mit Xtream Codes API.","Geben Sie Benutzername, Passwort und Server-URL ein.","Warten Sie, bis die Senderliste geladen ist."]],
+        ["Android Handy / Tablet","Google Play",["Installieren Sie IPTV Smarters Pro aus Google Play.","Wählen Sie Login mit Xtream Codes API.","Geben Sie die per WhatsApp erhaltenen Daten ein.","Tippen Sie auf Add User und öffnen Sie Live TV, Filme oder Serien."]],
+        ["iPhone / iPad / Apple TV","App Store",["Installieren Sie IPTV Smarters Player oder Flix IPTV aus dem App Store.","Wählen Sie Xtream-Codes-Login (oder M3U-URL hinzufügen).","Geben Sie Ihre Zugangsdaten exakt so ein, wie wir sie gesendet haben.","Speichern und warten, bis die Playlist geladen ist."]],
+        ["MAG Box / Enigma2","Portal / M3U",["Gehen Sie zu Einstellungen > Systemeinstellungen > Server > Portale.","Geben Sie die von uns bereitgestellte Portal-URL ein und speichern Sie.","Starten Sie das Gerät über das Menü neu.","Für Enigma2 senden Sie uns Ihre Gerätedaten – wir liefern die M3U-Zeile."]]
+      ],
+      playersTitle:"Empfohlene IPTV-Player",
+      playersSub:"Alle diese Apps funktionieren mit Ihrem Abo. Unsicher? Fragen Sie uns – wir empfehlen die beste App für Ihr Gerät.",
+      playersNote:"Alle Logos sind Eigentum der jeweiligen Inhaber. IPTV Web ist nicht mit diesen Anwendungen verbunden – wir stellen lediglich passende Zugangsdaten bereit.",
+      players:[["IPTV Smarters Pro","Android · iOS · Smart TV"],["TiviMate","Android TV · Firestick"],["IBO Player Pro","Smart TV · Android"],["XCIPTV Player","Android · Firestick"],["Smart IPTV","Samsung · LG"],["Flix IPTV","Smart TV · Mobil"]],
+      tipsTitle:"Tipps zur Fehlerbehebung", tipsSub:"Die meisten Probleme lassen sich in weniger als einer Minute lösen.",
+      tips:[["Ruckeln oder Einfrieren","Router neu starten, auf 5-GHz-WLAN oder LAN wechseln und Hintergrund-Apps schließen."],["Kanäle laden nicht","Player vollständig schließen und neu öffnen oder Zugangsdaten erneut eingeben – am besten kopieren statt tippen."],["Login fehlgeschlagen","Auf zusätzliche Leerzeichen prüfen und sicherstellen, dass die Server-URL exakt stimmt."],["Falsche Senderliste","Playlist in den App-Einstellungen aktualisieren – danach ist die Liste wieder korrekt."]],
+      faqTitle:"Häufige Fragen zur Einrichtung",
+      faq:[["Wie lange dauert die Aktivierung?","Meist unter 5 Minuten. Nach Bestätigung Ihrer Bestellung senden wir die Zugangsdaten sofort per WhatsApp."],["Welche App soll ich nutzen?","TiviMate ist ideal für Android TV und Firestick, IPTV Smarters Pro funktioniert überall, Smart IPTV oder IBO Player passen zu Samsung und LG."],["Kann ich auf zwei Geräten gleichzeitig schauen?","Pro Abo ist ein Stream gleichzeitig möglich. Wählen Sie das 2-Geräte-Paket für zwei parallele Streams."],["Brauche ich ein VPN?","Meist nicht. Wenn Ihr Anbieter Streaming drosselt, kann ein VPN helfen – fragen Sie uns."],["Können Sie es für mich einrichten?","Ja. Schreiben Sie uns auf WhatsApp – unser Team führt Sie kostenlos Schritt für Schritt durch die Einrichtung."]],
+      ctaTitle:"Irgendwo hängen geblieben? Wir machen es gemeinsam.",
+      ctaSub:"Unser Support-Team ist rund um die Uhr auf WhatsApp erreichbar.",
+      ftBlurb:"Der ultimative IPTV-Anbieter mit bester Qualität und bestem Support.",
+      ftFeatures:"Funktionen", ftFastSetup:"Schnelle Einrichtung", ftQuick:"Schnellzugriff", ftContact:"Kontakt",
+      ftContactText:"Fragen? Wir antworten rund um die Uhr auf WhatsApp.",
+      ftRights:"© 2026 IPTV Web. Alle Rechte vorbehalten."
+    },
+    fr: {
+      navHome:"Accueil", navShop:"Boutique", navSetup:"Guide d'installation",
+      ctaStart:"Commencer", ctaPlans:"Voir nos offres", ctaHelp:"Aide sur WhatsApp", ctaTrial:"Essai gratuit",
+      heroEyebrow:"Guide d'installation",
+      heroTitle:"Installez l'IPTV en moins de 5 minutes",
+      heroSub:"Suivez les étapes correspondant à votre appareil. En cas de souci, écrivez-nous sur WhatsApp et nous le ferons avec vous.",
+      startTitle:"Avant de commencer", startSub:"Quatre choses à préparer avant l'installation.",
+      steps:[["Votre abonnement","Commandez une offre ou demandez un essai gratuit de 24 heures sur WhatsApp."],["Vos identifiants","Nous envoyons votre nom d'utilisateur, mot de passe et URL du serveur (ou un lien M3U)."],["Un lecteur compatible","Installez l'une des applications IPTV recommandées sur votre appareil."],["Une connexion stable","15–25 Mbit/s pour la HD, 25 Mbit/s+ pour la 4K. Ethernet ou Wi-Fi 5 GHz de préférence."]],
+      devTitle:"Installation par appareil", devSub:"Choisissez votre appareil et suivez les étapes numérotées.",
+      guides:[
+        ["Smart TV","Samsung · LG",["Ouvrez le store de votre TV et installez Smart IPTV ou IBO Player.","Notez l'adresse MAC affichée à l'écran d'accueil de l'application.","Envoyez-nous cette adresse MAC sur WhatsApp.","Nous activons votre appareil et la liste des chaînes se charge automatiquement."]],
+        ["Firestick / Fire TV","Application Downloader",["Activez les applications de sources inconnues dans Paramètres > My Fire TV > Options du développeur.","Installez l'application Downloader et saisissez le lien que nous envoyons.","Installez IPTV Smarters Pro ou TiviMate.","Connectez-vous avec vos identifiants et commencez à regarder."]],
+        ["Android TV / Box Android","Google Play",["Installez IPTV Smarters Pro, TiviMate ou XCIPTV depuis Google Play.","Choisissez Connexion avec Xtream Codes API.","Saisissez votre nom d'utilisateur, mot de passe et URL du serveur.","Attendez le chargement de la liste des chaînes."]],
+        ["Téléphone / tablette Android","Google Play",["Installez IPTV Smarters Pro depuis Google Play.","Sélectionnez Connexion avec Xtream Codes API.","Saisissez les identifiants reçus sur WhatsApp.","Appuyez sur Add User puis ouvrez Live TV, Films ou Séries."]],
+        ["iPhone / iPad / Apple TV","App Store",["Installez IPTV Smarters Player ou Flix IPTV depuis l'App Store.","Choisissez la connexion Xtream Codes (ou Ajouter une URL M3U).","Saisissez vos identifiants exactement comme envoyés.","Enregistrez et attendez le chargement de la playlist."]],
+        ["Boîtier MAG / Enigma2","Portail / M3U",["Allez dans Paramètres > Paramètres système > Serveurs > Portails.","Saisissez l'URL du portail que nous fournissons et enregistrez.","Redémarrez l'appareil depuis le menu.","Pour Enigma2, envoyez-nous les détails de votre appareil et nous fournirons la ligne M3U."]]
+      ],
+      playersTitle:"Lecteurs IPTV recommandés",
+      playersSub:"Toutes ces applications fonctionnent avec votre abonnement. Un doute ? Demandez-nous la meilleure option pour votre appareil.",
+      playersNote:"Tous les logos appartiennent à leurs propriétaires respectifs. IPTV Web n'est pas affilié à ces applications — nous fournissons simplement des identifiants compatibles.",
+      players:[["IPTV Smarters Pro","Android · iOS · Smart TV"],["TiviMate","Android TV · Firestick"],["IBO Player Pro","Smart TV · Android"],["XCIPTV Player","Android · Firestick"],["Smart IPTV","Samsung · LG"],["Flix IPTV","Smart TV · Mobile"]],
+      tipsTitle:"Conseils de dépannage", tipsSub:"La plupart des problèmes se règlent en moins d'une minute.",
+      tips:[["Saccades ou gel de l'image","Redémarrez votre box, passez en 5 GHz ou en ethernet et fermez les applications en arrière-plan."],["Chaînes qui ne chargent pas","Fermez complètement puis rouvrez le lecteur, ou ressaisissez vos identifiants (copier-coller de préférence)."],["Échec de connexion","Vérifiez les espaces en trop et que l'URL du serveur est exactement celle envoyée."],["Mauvaise liste de chaînes","Actualisez la playlist dans les réglages de l'application."]],
+      faqTitle:"FAQ installation",
+      faq:[["Combien de temps prend l'activation ?","Généralement moins de 5 minutes. Dès la confirmation, nous envoyons vos identifiants sur WhatsApp."],["Quelle application choisir ?","TiviMate est idéal sur Android TV et Firestick, IPTV Smarters Pro fonctionne partout, Smart IPTV ou IBO Player conviennent aux TV Samsung et LG."],["Puis-je regarder sur deux appareils ?","Un flux à la fois par abonnement. Choisissez l'offre 2 appareils pour deux flux simultanés."],["Ai-je besoin d'un VPN ?","Pas en général. Si votre opérateur limite le streaming, un VPN peut aider — demandez-nous."],["Pouvez-vous l'installer pour moi ?","Oui. Écrivez-nous sur WhatsApp et notre équipe vous guidera pas à pas, gratuitement."]],
+      ctaTitle:"Bloqué quelque part ? On le fait avec vous.",
+      ctaSub:"Notre équipe support est disponible sur WhatsApp 24h/24 et 7j/7.",
+      ftBlurb:"Le fournisseur IPTV ultime, avec la meilleure qualité et le meilleur support.",
+      ftFeatures:"Fonctionnalités", ftFastSetup:"Installation rapide", ftQuick:"Liens rapides", ftContact:"Contact",
+      ftContactText:"Des questions ? Nous répondons sur WhatsApp 24h/24.",
+      ftRights:"© 2026 IPTV Web. Tous droits réservés."
+    },
+    es: {
+      navHome:"Inicio", navShop:"Tienda", navSetup:"Guía de instalación",
+      ctaStart:"Empezar", ctaPlans:"Ver nuestros planes", ctaHelp:"Ayuda por WhatsApp", ctaTrial:"Prueba gratuita",
+      heroEyebrow:"Guía de instalación",
+      heroTitle:"Configura tu IPTV en menos de 5 minutos",
+      heroSub:"Sigue los pasos de tu dispositivo. Si algo falla, escríbenos por WhatsApp y lo configuramos contigo.",
+      startTitle:"Antes de empezar", startSub:"Cuatro cosas que debes tener listas antes de instalar.",
+      steps:[["Tu suscripción","Contrata un plan o pide una prueba gratuita de 24 horas por WhatsApp."],["Tus credenciales","Te enviamos usuario, contraseña y URL del servidor (o un enlace M3U)."],["Un reproductor compatible","Instala una de las apps IPTV recomendadas en tu dispositivo."],["Conexión estable","15–25 Mbps para HD y 25 Mbps o más para 4K. Mejor por cable o Wi-Fi de 5 GHz."]],
+      devTitle:"Instalación por dispositivo", devSub:"Elige tu dispositivo y sigue los pasos numerados.",
+      guides:[
+        ["Smart TV","Samsung · LG",["Abre la tienda de apps de tu TV e instala Smart IPTV o IBO Player.","Anota la dirección MAC que aparece en la pantalla inicial de la app.","Envíanos esa dirección MAC por WhatsApp.","Activamos tu dispositivo y la lista de canales se carga automáticamente."]],
+        ["Firestick / Fire TV","App Downloader",["Activa Apps de origen desconocido en Ajustes > Mi Fire TV > Opciones de desarrollador.","Instala la app Downloader e introduce el enlace que te enviamos.","Instala IPTV Smarters Pro o TiviMate.","Inicia sesión con tus credenciales y empieza a ver."]],
+        ["Android TV / Android Box","Google Play",["Instala IPTV Smarters Pro, TiviMate o XCIPTV desde Google Play.","Elige Iniciar sesión con Xtream Codes API.","Introduce usuario, contraseña y URL del servidor.","Espera a que cargue la lista de canales."]],
+        ["Móvil / tablet Android","Google Play",["Instala IPTV Smarters Pro desde Google Play.","Selecciona Iniciar sesión con Xtream Codes API.","Introduce las credenciales que te enviamos por WhatsApp.","Pulsa Add User y abre TV en directo, Películas o Series."]],
+        ["iPhone / iPad / Apple TV","App Store",["Instala IPTV Smarters Player o Flix IPTV desde la App Store.","Elige el acceso con Xtream Codes (o Añadir URL M3U).","Introduce tus credenciales tal y como te las enviamos.","Guarda y espera a que cargue la lista."]],
+        ["MAG Box / Enigma2","Portal / M3U",["Ve a Ajustes > Ajustes del sistema > Servidores > Portales.","Introduce la URL del portal que te facilitamos y guarda.","Reinicia el dispositivo desde el menú.","Para Enigma2, envíanos los datos de tu equipo y te daremos la línea M3U."]]
+      ],
+      playersTitle:"Reproductores IPTV recomendados",
+      playersSub:"Todas estas apps funcionan con tu suscripción. ¿Dudas? Pregúntanos y te recomendamos la mejor para tu dispositivo.",
+      playersNote:"Todos los logotipos son propiedad de sus respectivos dueños. IPTV Web no está afiliado a estas aplicaciones: solo proporcionamos credenciales compatibles.",
+      players:[["IPTV Smarters Pro","Android · iOS · Smart TV"],["TiviMate","Android TV · Firestick"],["IBO Player Pro","Smart TV · Android"],["XCIPTV Player","Android · Firestick"],["Smart IPTV","Samsung · LG"],["Flix IPTV","Smart TV · Móvil"]],
+      tipsTitle:"Consejos de solución de problemas", tipsSub:"La mayoría de incidencias se resuelven en menos de un minuto.",
+      tips:[["Cortes o congelaciones","Reinicia el router, cambia a 5 GHz o cable ethernet y cierra las apps en segundo plano."],["Los canales no cargan","Cierra por completo y vuelve a abrir el reproductor, o reintroduce tus credenciales (mejor copiar y pegar)."],["Error de inicio de sesión","Comprueba que no haya espacios de más y que la URL del servidor sea exactamente la enviada."],["Lista de canales incorrecta","Actualiza la lista desde los ajustes de la aplicación."]],
+      faqTitle:"Preguntas sobre la instalación",
+      faq:[["¿Cuánto tarda la activación?","Normalmente menos de 5 minutos. En cuanto se confirma tu pedido, te enviamos las credenciales por WhatsApp."],["¿Qué app debo usar?","TiviMate es la mejor en Android TV y Firestick, IPTV Smarters Pro funciona en todo, y Smart IPTV o IBO Player van bien en Samsung y LG."],["¿Puedo ver en dos dispositivos a la vez?","Cada suscripción reproduce en un dispositivo a la vez. Elige el plan de 2 dispositivos para dos emisiones simultáneas."],["¿Necesito una VPN?","Normalmente no. Si tu operador limita el streaming, una VPN puede ayudar: pregúntanos."],["¿Podéis configurarlo por mí?","Sí. Escríbenos por WhatsApp y nuestro equipo te guiará paso a paso, sin coste."]],
+      ctaTitle:"¿Te has atascado? Lo hacemos contigo.",
+      ctaSub:"Nuestro equipo de soporte está en WhatsApp 24/7 para guiarte en cada paso.",
+      ftBlurb:"El proveedor IPTV definitivo, con la mejor calidad y soporte.",
+      ftFeatures:"Características", ftFastSetup:"Instalación rápida", ftQuick:"Enlaces rápidos", ftContact:"Contacto",
+      ftContactText:"¿Preguntas? Respondemos por WhatsApp a cualquier hora.",
+      ftRights:"© 2026 IPTV Web. Todos los derechos reservados."
+    },
+    it: {
+      navHome:"Home", navShop:"Negozio", navSetup:"Guida all'installazione",
+      ctaStart:"Inizia ora", ctaPlans:"Vedi i nostri piani", ctaHelp:"Assistenza su WhatsApp", ctaTrial:"Prova gratuita",
+      heroEyebrow:"Guida all'installazione",
+      heroTitle:"Configura l'IPTV in meno di 5 minuti",
+      heroSub:"Segui i passaggi per il tuo dispositivo. Se qualcosa non funziona, scrivici su WhatsApp e lo configuriamo insieme.",
+      startTitle:"Prima di iniziare", startSub:"Quattro cose da avere pronte prima dell'installazione.",
+      steps:[["Il tuo abbonamento","Acquista un piano o richiedi una prova gratuita di 24 ore su WhatsApp."],["Le tue credenziali","Ti inviamo nome utente, password e URL del server (o un link M3U)."],["Un player supportato","Installa una delle app IPTV consigliate sul tuo dispositivo."],["Connessione stabile","15–25 Mbps per l'HD, oltre 25 Mbps per il 4K. Meglio via cavo o Wi-Fi 5 GHz."]],
+      devTitle:"Installazione per dispositivo", devSub:"Scegli il tuo dispositivo e segui i passaggi numerati.",
+      guides:[
+        ["Smart TV","Samsung · LG",["Apri lo store della TV e installa Smart IPTV o IBO Player.","Annota l'indirizzo MAC mostrato nella schermata iniziale dell'app.","Inviaci quell'indirizzo MAC su WhatsApp.","Attiviamo il dispositivo e la lista canali si carica automaticamente."]],
+        ["Firestick / Fire TV","App Downloader",["Attiva le app da origini sconosciute in Impostazioni > Il mio Fire TV > Opzioni sviluppatore.","Installa l'app Downloader e inserisci il link che ti inviamo.","Installa IPTV Smarters Pro o TiviMate.","Accedi con le credenziali e inizia a guardare."]],
+        ["Android TV / Android Box","Google Play",["Installa IPTV Smarters Pro, TiviMate o XCIPTV da Google Play.","Scegli Login con Xtream Codes API.","Inserisci nome utente, password e URL del server.","Attendi il caricamento della lista canali."]],
+        ["Smartphone / tablet Android","Google Play",["Installa IPTV Smarters Pro da Google Play.","Seleziona Login con Xtream Codes API.","Inserisci le credenziali ricevute su WhatsApp.","Tocca Add User e apri Live TV, Film o Serie."]],
+        ["iPhone / iPad / Apple TV","App Store",["Installa IPTV Smarters Player o Flix IPTV dall'App Store.","Scegli l'accesso Xtream Codes (o Aggiungi URL M3U).","Inserisci le credenziali esattamente come inviate.","Salva e attendi il caricamento della playlist."]],
+        ["MAG Box / Enigma2","Portale / M3U",["Vai su Impostazioni > Impostazioni di sistema > Server > Portali.","Inserisci l'URL del portale che ti forniamo e salva.","Riavvia il dispositivo dal menu.","Per Enigma2, inviaci i dettagli del dispositivo e ti forniremo la riga M3U."]]
+      ],
+      playersTitle:"Player IPTV consigliati",
+      playersSub:"Tutte queste app funzionano con il tuo abbonamento. Hai dubbi? Chiedici quale è la migliore per il tuo dispositivo.",
+      playersNote:"Tutti i loghi appartengono ai rispettivi proprietari. IPTV Web non è affiliata a queste applicazioni: forniamo semplicemente credenziali compatibili.",
+      players:[["IPTV Smarters Pro","Android · iOS · Smart TV"],["TiviMate","Android TV · Firestick"],["IBO Player Pro","Smart TV · Android"],["XCIPTV Player","Android · Firestick"],["Smart IPTV","Samsung · LG"],["Flix IPTV","Smart TV · Mobile"]],
+      tipsTitle:"Consigli per la risoluzione dei problemi", tipsSub:"La maggior parte dei problemi si risolve in meno di un minuto.",
+      tips:[["Buffering o blocchi","Riavvia il router, passa alla rete 5 GHz o al cavo ethernet e chiudi le app in background."],["I canali non si caricano","Chiudi completamente e riapri il player, oppure reinserisci le credenziali (meglio copia e incolla)."],["Accesso non riuscito","Controlla che non ci siano spazi extra e che l'URL del server sia esattamente quello inviato."],["Lista canali errata","Aggiorna la playlist dalle impostazioni dell'app."]],
+      faqTitle:"FAQ installazione",
+      faq:[["Quanto dura l'attivazione?","Di solito meno di 5 minuti. Appena l'ordine è confermato, inviamo subito le credenziali su WhatsApp."],["Quale app devo usare?","TiviMate è ideale su Android TV e Firestick, IPTV Smarters Pro funziona ovunque, Smart IPTV o IBO Player sono adatti a Samsung e LG."],["Posso guardare su due dispositivi insieme?","Ogni abbonamento riproduce su un dispositivo alla volta. Scegli il piano 2 dispositivi per due stream simultanei."],["Serve una VPN?","Di norma no. Se il tuo operatore limita lo streaming, una VPN può aiutare: chiedici pure."],["Potete configurarlo voi per me?","Sì. Scrivici su WhatsApp e il nostro team ti guiderà passo dopo passo, gratuitamente."]],
+      ctaTitle:"Bloccato da qualche parte? Lo facciamo insieme.",
+      ctaSub:"Il nostro team di assistenza è su WhatsApp 24/7 per guidarti in ogni passaggio.",
+      ftBlurb:"Il provider IPTV definitivo, con la migliore qualità e assistenza.",
+      ftFeatures:"Caratteristiche", ftFastSetup:"Attivazione rapida", ftQuick:"Link rapidi", ftContact:"Contatti",
+      ftContactText:"Domande? Rispondiamo su WhatsApp a qualsiasi ora.",
+      ftRights:"© 2026 IPTV Web. Tutti i diritti riservati."
+    }
+  };
+
+  LANGS = [
+    { code: "EN", id: "en", name: "English" },
+    { code: "DE", id: "de", name: "Deutsch" },
+    { code: "FR", id: "fr", name: "Français" },
+    { code: "ES", id: "es", name: "Español" },
+    { code: "IT", id: "it", name: "Italiano" }
+  ];
+
+  COUNTRY_MAP = { DE: "de", AT: "de", CH: "de", FR: "fr", BE: "fr", ES: "es", MX: "es", AR: "es", IT: "it" };
+
+  PLAYER_IMGS = [
+    "assets/player-smarters.png",
+    "assets/player-tivimate.png",
+    "assets/player-ibo.png",
+    "assets/player-xciptv.png",
+    "assets/player-smartiptv.png",
+    "assets/player-flix.jpg"
+  ];
+
+  PLAYER_DARK_PLATE = [true, false, false, false, false, false];
+
+  GUIDE_PATHS = [
+    ["M2.5 5h19v11h-19z", "M8 20h8", "M12 16v4"],
+    ["M6 3.5 12 8l6-4.5", "M3.5 8h17v12h-17z", "m10 12 4.5 2.5L10 17v-5Z"],
+    ["M6 2.5h12v19H6z", "M9.5 5.5h5", "M10.5 18.5h3", "m10.5 10 4 2-4 2v-4Z"],
+    ["M7 2.5h10v19H7z", "M10.5 18.5h3"],
+    ["M8.5 2.5h7a2 2 0 0 1 2 2v15a2 2 0 0 1-2 2h-7a2 2 0 0 1-2-2v-15a2 2 0 0 1 2-2Z", "M10.5 18.5h3", "M13.5 5.5a2 2 0 0 0-3 0"],
+    ["M3.5 7.5h17v9h-17z", "M6.5 11h4", "M17 11h.01", "M7 20h10", "M12 16.5V20"]
+  ];
+
+  componentDidMount() {
+    this.waitForConfig(0);
+    let saved = null;
+    try { saved = localStorage.getItem("iptvweb_lang"); } catch (e) {}
+    if (saved && this.DICT[saved]) { this.setState({ lang: saved }); return; }
+    const nav = (navigator.language || "en").slice(0, 2).toLowerCase();
+    if (this.DICT[nav] && nav !== "en") this.setState({ lang: nav });
+    fetch("https://ipapi.co/country/")
+      .then(r => (r.ok ? r.text() : null))
+      .then(c => {
+        if (!c) return;
+        const l = this.COUNTRY_MAP[String(c).trim().toUpperCase()];
+        let already = null;
+        try { already = localStorage.getItem("iptvweb_lang"); } catch (e) {}
+        if (l && !already) this.setState({ lang: l });
+      })
+      .catch(() => {});
+  }
+
+  pickLang(id) {
+    try { localStorage.setItem("iptvweb_lang", id); } catch (e) {}
+    this.setState({ lang: id });
+    if (document.documentElement) document.documentElement.lang = id;
+  }
+
+  wa(kind, vars) {
+    if (typeof window.waLink === "function") return window.waLink(this.state.lang, kind, vars);
+    var n = (window.WHATSAPP_CONFIG && window.WHATSAPP_CONFIG.number) || "447478036804";
+    return "https://wa.me/" + n;
+  }
+
+  waitForConfig(tries) {
+    var self = this;
+    if (typeof window.waLink === "function") { this.forceUpdate(); return; }
+    if ((tries || 0) > 40) return;
+    setTimeout(function () { self.waitForConfig((tries || 0) + 1); }, 100);
+  }
+
+  icon(paths) {
+    const e = React.createElement;
+    return e("svg", { width: 21, height: 21, viewBox: "0 0 24 24", fill: "none", stroke: "#10b981",
+      strokeWidth: 1.6, strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true" },
+      paths.map((d, i) => e("path", { key: i, d: d })));
+  }
+
+  renderVals() {
+    const lang = this.state.lang;
+    const t = this.DICT[lang] || this.DICT.en;
+
+    return {
+      t, lang,
+      langs: this.LANGS.map(l => ({
+        code: l.code, name: l.name, pick: () => this.pickLang(l.id),
+        style: "width:42px; padding:9px 0; borderRadius:9px; border:none; cursor:pointer; fontFamily:'DM Sans',sans-serif; fontSize:12px; fontWeight:700; letterSpacing:.5px; background:" +
+          (l.id === lang ? "#10b981" : "transparent") + "; color:" + (l.id === lang ? "#06120e" : "#9a9a9a")
+      })),
+      waMain: this.wa("main"),
+      waTrial: this.wa("trial"),
+      steps: t.steps.map((s, i) => ({ n: "0" + (i + 1), title: s[0], desc: s[1] })),
+      guides: t.guides.map((g, i) => ({
+        name: g[0], app: g[1], icon: this.icon(this.GUIDE_PATHS[i]),
+        lines: g[2].map(x => ({ text: x }))
+      })),
+      players: t.players.map((p, i) => ({
+        name: p[0], platform: p[1], src: this.PLAYER_IMGS[i], alt: p[0] + " IPTV player app",
+        imgStyle: "width:74px; height:74px; objectFit:contain; borderRadius:16px; padding:6px; background:" +
+          (this.PLAYER_DARK_PLATE[i] ? "#1a1a1a" : "#ffffff")
+      })),
+      tips: t.tips.map(x => ({ title: x[0], desc: x[1] })),
+      faqs: t.faq.map((f, i) => ({
+        q: f[0], a: f[1], open: this.state.openFaq === i,
+        toggle: () => this.setState(s => ({ openFaq: s.openFaq === i ? -1 : i })),
+        iconStyle: "color:#10b981; fontSize:22px; lineHeight:1; flexShrink:0; transform:rotate(" + (this.state.openFaq === i ? "45deg" : "0deg") + ")"
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>
